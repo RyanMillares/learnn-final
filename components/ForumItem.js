@@ -29,7 +29,7 @@ function monthToNum1(month) { //this is faster
         case "Dec":
             return 12;
         default: 
-            return -1; //you really messed up
+            return -1; //you really messed up /
             
     }
 }
