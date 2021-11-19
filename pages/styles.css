@@ -1,0 +1,119 @@
+
+html {
+    background-color: #999999;
+}
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    column-gap: 20px;
+    padding-right: 20px;
+    padding-left: 20px;
+    background-color: lightgray;
+}
+.logo {
+    display: flex;
+    flex-direction: row;
+}
+.lightbulb {
+    width: 60px;
+}
+.headerBar {
+    display: flex;
+    flex-direction: row;
+
+}
+.menuItems {
+    width: 80%;
+
+}
+.profileDisplay {
+    background-color: lightskyblue;
+    display: inline;
+}
+.pfp {
+    border-radius: 100px;
+    
+}
+header {
+    color: #1d3557;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.forumItem {
+    color: black;
+    padding-top: 5px;
+    padding-bottom: 5x;
+    padding-left: 10px;
+    padding-right: 10px;
+
+    transition: background-color 1ms ;
+    
+}
+.forumItem:hover {
+    color: white;
+    background-color: rgba(25,50,50,0.75);
+    transition: background-color 1ms;
+}
+.forumPage {
+    margin-left: 5vw;
+    margin-right: 15vw;
+    max-height: 80vh;
+    
+
+    overflow-y: scroll;
+    border-radius: 10px;
+    
+}
+
+
+
+.forumEnter {
+    margin-left: 5vw;
+    margin-right: 15vw;
+}
+.forumMessage {
+
+    
+    border: 5px bevel #00BBFF;
+    max-width: 70%;
+    border-radius: 5px;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    margin-bottom: 1px;
+    overflow: hidden;
+    
+}
+textarea .editMsg {
+    color: white;
+    background-color: #0055AA;
+    border: 5px bevel #00BBFF;
+    max-width: 70%;
+    border-radius: 5px;
+    padding-right: 4px;
+    padding-left: 4px;
+    overflow: hidden;
+}
+.forums {
+    background-repeat: no-repeat;
+    
+    background-color: gray;
+    background-image: linear-gradient(#DDEEFF, #DDFFEE);
+    
+    background-attachment: fixed;
+    background-size: 100%;
+    overflow: hidden;
+    
+
+}
+.useless {
+    background-image: url('https://derpicdn.net/img/view/2013/2/7/235902.jpg');
+    background-image: url('https://derpicdn.net/img/view/2017/5/17/1438986.png');
+    background-image: url('https://derpicdn.net/img/2017/5/17/1438986/large.png');
+}
