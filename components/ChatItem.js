@@ -65,7 +65,7 @@ function msgAligns(currUser, name) {
 
 }
 
-export default function ForumItem({ sender, date_sent, message, msgId, table, updater, isNew, newDay }) {
+export default function ChatItem({ sender, date_sent, message, msgId, table, updater, isNew, newDay }) {
     const [msgSettings, setSettings] = useState(false)
     const [editMode, setEditMode] = useState(false)
     const [editted, setEditted] = useState(false)

@@ -20,15 +20,16 @@ export default function Header({currPage}) {
             <Link href="/groups/forums" className="link"><a>Forums</a></Link>
             <a href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ">Free Offers</a>
 
+            
+            </nav>
             <div class = "profileDisplay">
                 {
                     (user != null) && (
-                        (user.email).split("@")[0]
+                        <h1>Welcome {(user.email).split("@")[0]}</h1>
                     )
                
                 }
-            </div>
-            </nav>  
+            </div>  
     
             
             </div>
