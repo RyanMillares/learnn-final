@@ -5,8 +5,11 @@ import { supabase } from '../utils/supabaseClient'
 import { Auth } from "@supabase/ui"
 import Forums from '../components/Forums'
 
+import React, { useState } from "react";
+
 
 export default function Home() {
+  const [selectedImage, setSelectedImage] = useState(null);
   const { user } = Auth.useUser()
   return (
     
@@ -46,6 +49,33 @@ export default function Home() {
         </div>
         )
       }
+      <div class="wrapper">
+      <div class="box one"></div>
+      <div class="box two"></div>
+      <div class="box three"></div>
+    </div>
+    <div>
+      <h1>Upload and Display Image usign React Hook's</h1>
+      {selectedImage && (
+        <div>
+        <img alt="not fount" width={"250px"} src={URL.createObjectURL(selectedImage)} />
+        <br />
+        <button onClick={()=>setSelectedImage(null)}>Remove</button>
+        </div>
+      )}
+      <br />
+     
+      <br /> 
+      <input
+        type="file"
+        name="myImage"
+        onChange={(event) => {
+          console.log(event.target.files[0]);
+          setSelectedImage(event.target.files[0]);
+        }}
+      />
+    </div>
+
     </main>
 
 

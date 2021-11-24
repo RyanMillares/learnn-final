@@ -1,0 +1,52 @@
+.wrapper {
+    display: flex;
+  }
+  .box {
+    width: 50px;
+    height: 50px;
+    margin: 0 20px;
+    
+  }
+
+  /* PLAY AROUND WITH ANIMATIONS HERE */
+  @keyframes load {
+    0% {
+      transform: rotate(0deg);
+      background-color: blue;
+      opacity: 0;
+    }
+    50% {
+      transform: rotate(360deg);
+      background-color: teal;
+      opacity: 1;
+    }
+    100% {
+      transform: rotate(0deg);
+      background-color: blue;
+
+      opacity: 0;
+    }
+  }
+
+  .box {
+    /* ending transition */
+    animation: load 1500ms infinite;
+    animation-delay: 3000ms;
+    border-radius: 0%;
+    animation-fill-mode: both;
+  }
+
+  .one {
+    animation-delay: 0s;
+  }
+
+  .two {
+    animation-delay: 500ms;
+  }
+
+  .three {
+    animation-delay: 1000ms;
+  }
+  .wrapper:hover .box {
+    /* starting transition */
+  }

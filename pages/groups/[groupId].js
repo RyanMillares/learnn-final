@@ -31,7 +31,7 @@ export default function groupchat () {
         user =  supabase.auth.user()
     }
     const router = useRouter()
-    const groupId = router.query.groupId
+    let groupId = parseInt(router.query.groupId,10)
     
     
     const badWords = [" kill ", "suicide", "murder"]
@@ -41,32 +41,76 @@ export default function groupchat () {
     const [error, setError] = useState(null)
     const [lastUser, setLastUser] = useState("")
     const [isSame, setSame] = useState([])
+    const [allowedUsers, setAllowed] = useState("")
 
-    const [validGroup, setValid] = useState(true)
+    const [validGroup, setValid] = useState(0)
+    const [hasPerms, setPerms] = useState(false)
+    const [groupInfo, setInfo] = useState({})
 
 
     useEffect(() => {
-        while(!validGroup){
-            verifyGroup()
+        if(validGroup == 0){
+            if(!isNaN(groupId)) {
+                verifyGroup()
+            }
+            
         }
-        
-        fetchMessages()
+        else {
+            if(hasPerms){
+                fetchMessages()
+            }   
+
+        }
+        //console.log(typeof groupId)
+               
     })
 
     const verifyGroup = async () => {
-        const { data, error, count } = await supabase
-            .from('chatgroups')
+        //console.log(groupId)
+        if(isNaN(groupId)){
+            console.log("not a number")
+        }
+        else {
+            console.log("completely valid")
+            console.log(groupId)
+        }
+        const { data, error} = await supabase
+            .from('groupchats')
             .select()
             .eq("group_id", groupId)
-        setValid(data.length == 1)
+        if(error) {
+            console.log(error)
+            
+        }
+        if(data != null) {
+            setValid(data.length == 1 ? 2 : 1)
+            if(data.length > 0) {
+                setAllowed(data[0].accepted_members)
+                setPerms(data[0].accepted_members.indexOf(user.email) > -1)
+                console.log("Does the group exist? " + data.length )
+                console.log("Who is allowed?" + data[0].accepted_members)
+                console.log(data[0].accepted_members.indexOf(user.email))
+                console.log(data[0].accepted_members + " should contain: " + user.email)
+                setInfo(data[0])
+                
+    
+                console.log(data[0].accepted_members)
+            } 
+            
+        }
+        if(validGroup){
+            
+        }
         
     }
     const fetchMessages = async () => {
         //fetch sql data
+        
         let { data: messages, error} = await supabase
         .from("groupmsgs")
         .select()
         .eq("group_id", groupId)
+        
 
         
         if(messages != null) {
@@ -147,71 +191,104 @@ export default function groupchat () {
     return (
         <div>
         <Header/>
+        
         {
-            user != null && (
-                <h1 className = "text-center font-bold">Welcome {(user.email).split("@")[0]} to Group {groupId}</h1>
+            validGroup == 0 ? (
+                <div style = {{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+                    <h1 className="text-center font-bold text-4xl">Fetching data...</h1>
+                    <div class="wrapper" style = {{marginTop: '15px', marginBottom:'15px'}}>
+                        <div class="box one"></div>
+                        <div class="box two"></div>
+                        <div class="box three"></div>
+                    </div>
+                    
+                </div>
+            ) : (
+                <>
+                {
+                    validGroup == 1 ? (
+                        <h1 className="text-center font-bold text-3xl">The group you are trying to access does not exist.</h1>
+                    ) : (
+                        <>
+                        {
+                            !hasPerms ? (
+                                <h1>You do not have permission to access this group.</h1>
+                            ) : (
+                                            <>
+                                                {
+                                                    user != null && (
+                                                        <h1 className="text-center font-bold">Welcome {(user.email).split("@")[0]} to {groupInfo.group_name}</h1>
+                                                    )
+                                                }
+                                                <div class="forumEnter">
+                                                    {
+                                                        false && (
+                                                            <h1 style={{ fontSize: '32' }}>Forums</h1>
+                                                        )
+                                                    }
+            
+            
+            
+                                                </div>
+                                                <div style={{ display: 'flex', flexDirection: 'row' }}>
+                                                    <div id="forumPage" class="forumPage">
+            
+            
+            
+                                                        <div id="forums" className="forums">
+                                                            {
+                                                                forumTests.length > 0 && (
+                                                                    forumTests.map((forum, i) => (
+            
+            
+                                                                        (forum != null) && (
+                                                                            <ForumItem
+                                                                                sender={forum.sender}
+                                                                                date_sent={forum.date_sent}
+                                                                                message={forum.message}
+                                                                                msgId={forum.chat_id}
+                                                                                table="chat"
+                                                                                updater={fetchMessages}
+                                                                                isNew={i > 0 ? (forumTests[i].sender != forumTests[i - 1].sender || (forumTests[i].date_sent - forumTests[i - 1].date_sent > 3600000) && forumTests[i].sender == forumTests[i - 1].sender) : true
+            
+                                                                                }
+                                                                                newDay={i > 0 ? String(new Date(forumTests[i].date_sent)).slice(8, 10) != String(new Date(forumTests[i - 1].date_sent)).slice(8, 10) : true} />
+                                                                        ))
+                                                                    )
+            
+                                                                )
+                                                                //forumTests.slice(0).reverse().map((forum) => (
+            
+                                                            }
+            
+            
+            
+                                                        </div>
+            
+                                                    </div>
+                                                    <div style={{ width: '40vw' }}>
+                                                        <h1>lmao</h1>
+                                                    </div>
+                                                </div>
+            
+            
+                                                <div class="forumEnter">
+                                                    <Input handleSubmit={addMessage} buttonText="Send" />
+            
+                                                </div>
+                                            </>
+                            )
+                        }
+                        </>   
+                    )
+                }
+                </>
+                
             )
         }
        
 
-        <div class = "forumEnter">
-            {
-                false && (
-                    <h1 style = {{fontSize: '32'}}>Forums</h1>
-                )
-            }
-            
-            
-           
-        </div>
-            <div style={{ display: 'flex', flexDirection: 'row' }}>
-                <div id="forumPage" class="forumPage">
-
-
-
-                    <div id="forums" className="forums">
-                        {
-                            forumTests.length > 0 && (
-                                forumTests.map((forum, i) => (
-
-
-                                    (forum != null) && (
-                                        <ForumItem 
-                                        sender={forum.sender} 
-                                        date_sent={forum.date_sent} 
-                                        message={forum.message} 
-                                        msgId={forum.chat_id} 
-                                        table="chat" 
-                                        updater={fetchMessages} 
-                                        isNew={i > 0 ? (forumTests[i].sender != forumTests[i - 1].sender || (forumTests[i].date_sent - forumTests[i - 1].date_sent > 3600000) && forumTests[i].sender == forumTests[i - 1].sender) : true
-                                        
-                                        }
-                                        newDay = {i > 0 ? String(new Date(forumTests[i].date_sent)).slice(8,10) != String(new Date(forumTests[i - 1].date_sent)).slice(8,10) : true} />
-                                    ))
-                                )
-
-                            )
-                            //forumTests.slice(0).reverse().map((forum) => (
-
-                        }
-
-
-
-                    </div>
-
-                </div>
-                <div style = {{width: '40vw'}}>
-                    <h1>lmao</h1>
-                </div>
-            </div>
-       
-        <script>
-            
-        </script>
-        <div class = "forumEnter">
-        <Input handleSubmit = {addMessage} buttonText = "Send"/>
-
-        </div>
+        
     </div>
     )
 }
