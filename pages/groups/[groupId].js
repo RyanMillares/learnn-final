@@ -42,15 +42,32 @@ export default function groupchat () {
     const [lastUser, setLastUser] = useState("")
     const [isSame, setSame] = useState([])
 
+    const [validGroup, setValid] = useState(true)
+
 
     useEffect(() => {
+        while(!validGroup){
+            verifyGroup()
+        }
+        
         fetchMessages()
     })
+
+    const verifyGroup = async () => {
+        const { data, error, count } = await supabase
+            .from('chatgroups')
+            .select()
+            .eq("group_id", groupId)
+        setValid(data.length == 1)
+        
+    }
     const fetchMessages = async () => {
         //fetch sql data
         let { data: messages, error} = await supabase
-        .from("chat")
+        .from("groupmsgs")
         .select()
+        .eq("group_id", groupId)
+
         
         if(messages != null) {
           
@@ -66,6 +83,8 @@ export default function groupchat () {
         }
 
     }
+    
+    
 
     const addMessage = async (msg) => {
         let errorCode = 0 //0 = fine, 1 = blacklisted word, 2 = only white-space
@@ -91,9 +110,9 @@ export default function groupchat () {
             //console.log("reached")
             let brandNewDate = new Date().getTime()
             const { data, error } = await supabase
-                .from("chat")
+                .from("groupmsgs")
                 .insert([
-                { sender: user.email, date_sent: brandNewDate, message: msg}])
+                { group_id: groupId,sender: user.email, date_sent: brandNewDate, message: msg}])
             if(!error) {
                 setForumTests([...forumTests, {'sender': user.email, 'date_sent': brandNewDate, 'message': msg}])
             }

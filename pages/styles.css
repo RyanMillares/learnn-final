@@ -63,8 +63,10 @@ header {
 }
 .forumPage {
     margin-left: 5vw;
-    margin-right: 30vw;
+    width: 60vw;
+    
     max-height: 80vh;
+    height: 75vh;
     
 
     overflow-y: scroll;

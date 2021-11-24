@@ -65,7 +65,7 @@ function msgAligns(currUser, name) {
 
 }
 
-export default function ChatItem({ sender, date_sent, message, msgId, table, updater, isNew, newDay }) {
+export default function ChatItem({ sender, date_sent, message, msgId, updater, isNew, newDay }) {
     const [msgSettings, setSettings] = useState(false)
     const [editMode, setEditMode] = useState(false)
     const [editted, setEditted] = useState(false)
@@ -74,7 +74,7 @@ export default function ChatItem({ sender, date_sent, message, msgId, table, upd
     
     const deleteMessage = async () => {
         let { data: messages, error} = await supabase
-            .from(table)
+            .from("groupmsgs")
             .delete()
             .match({chat_id: msgId})
     
@@ -89,7 +89,7 @@ export default function ChatItem({ sender, date_sent, message, msgId, table, upd
     const updateMessage = async (newMsg) => {
         console.log(msgId)
         const { data, error } = await supabase
-            .from(table)
+            .from("groupmsgs")
             .update({ message: newMsg })
             .match({ chat_id: msgId})
         if(error) {
