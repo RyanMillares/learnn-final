@@ -77,9 +77,9 @@ export default function Forums ({user}) {
         let { data: messages, error} = await supabase
         .from("chattests")
         .select()
-        messages.sort(compare)
-        if(!messages == null) {
-            
+        
+        if(messages != null) {
+            messages.sort(compare)
 
         }
         

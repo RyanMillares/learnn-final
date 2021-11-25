@@ -38,7 +38,7 @@ export default function groups () {
         else {
             
             
-            router.push("/groups/" + String(data[0].group_id))
+            router.push("/groups/invite_members/" + String(data[0].group_id))
         }
     }
 

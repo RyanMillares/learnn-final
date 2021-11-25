@@ -1,4 +1,4 @@
-import ForumItem from "../../components/ForumItem"
+import ChatItem from "../../components/ChatItem"
 import Header from "../../components/Header"
 import { useEffect, useState } from 'react'
 import Input from "../../components/Input"
@@ -212,7 +212,7 @@ export default function groupchat () {
                         <>
                         {
                             !hasPerms ? (
-                                <h1>You do not have permission to access this group.</h1>
+                                <h1 className="text-center font-bold text-3xl">You do not have permission to access this group.</h1>
                             ) : (
                                             <>
                                                 {
@@ -242,12 +242,12 @@ export default function groupchat () {
             
             
                                                                         (forum != null) && (
-                                                                            <ForumItem
+                                                                            <ChatItem
                                                                                 sender={forum.sender}
                                                                                 date_sent={forum.date_sent}
                                                                                 message={forum.message}
-                                                                                msgId={forum.chat_id}
-                                                                                table="chat"
+                                                                                msgId={forum.msg_id}
+                                                                                table="groupmsgs"
                                                                                 updater={fetchMessages}
                                                                                 isNew={i > 0 ? (forumTests[i].sender != forumTests[i - 1].sender || (forumTests[i].date_sent - forumTests[i - 1].date_sent > 3600000) && forumTests[i].sender == forumTests[i - 1].sender) : true
             

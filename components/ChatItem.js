@@ -65,7 +65,7 @@ function msgAligns(currUser, name) {
 
 }
 
-export default function ChatItem({ sender, date_sent, message, msgId, updater, isNew, newDay }) {
+export default function ChatItem({ sender, date_sent, message, msgId, table, updater, isNew, newDay }) {
     const [msgSettings, setSettings] = useState(false)
     const [editMode, setEditMode] = useState(false)
     const [editted, setEditted] = useState(false)
@@ -74,9 +74,9 @@ export default function ChatItem({ sender, date_sent, message, msgId, updater, i
     
     const deleteMessage = async () => {
         let { data: messages, error} = await supabase
-            .from("groupmsgs")
+            .from(table)
             .delete()
-            .match({chat_id: msgId})
+            .match({msg_id: msgId})
     
         if(!error) {
             
@@ -89,9 +89,9 @@ export default function ChatItem({ sender, date_sent, message, msgId, updater, i
     const updateMessage = async (newMsg) => {
         console.log(msgId)
         const { data, error } = await supabase
-            .from("groupmsgs")
+            .from(table)
             .update({ message: newMsg })
-            .match({ chat_id: msgId})
+            .match({ msg_id: msgId})
         if(error) {
             console.log(error) 
         }
@@ -149,7 +149,7 @@ export default function ChatItem({ sender, date_sent, message, msgId, updater, i
                     <h1 style={{ textAlign: currUser.email == name ? 'right' : 'left' }}>
                         {
                             currUser.email != name && (
-                                <img src="../images/profile1.png" style={{ width: '50px', height: '50px', borderRadius: '100%', overflow: 'hidden', display: 'inline' }} />
+                                <img src="../images/default.jpg" style={{ width: '50px', height: '50px', borderRadius: '100%', overflow: 'hidden', display: 'inline' }} />
                             )
                         }
 
@@ -176,7 +176,7 @@ export default function ChatItem({ sender, date_sent, message, msgId, updater, i
                         }
                         {
                             currUser.email == name && ( //add function later to fetch this
-                                <img src="../images/profile2.png" style={{ width: '50px', height: '50px', borderRadius: '100%', overflow: 'hidden', display: 'inline' }} />
+                                <img src="../images/profile.jpg" style={{ width: '50px', height: '50px', borderRadius: '100%', overflow: 'hidden', display: 'inline' }} />
                             )
                         }
                     </h1>
