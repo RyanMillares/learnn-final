@@ -176,7 +176,7 @@ export default function ChatItem({ sender, date_sent, message, msgId, table, upd
                         }
                         {
                             currUser.email == name && ( //add function later to fetch this
-                                <img src="../images/profile.jpg" style={{ width: '50px', height: '50px', borderRadius: '100%', overflow: 'hidden', display: 'inline' }} />
+                                <img src="../images/lyra.png" style={{ width: '50px', height: '50px', borderRadius: '100%', overflow: 'hidden', display: 'inline' }} />
                             )
                         }
                     </h1>
