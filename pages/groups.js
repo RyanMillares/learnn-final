@@ -1,7 +1,7 @@
 import Link from "next/Link";
 import Header from "../components/Header";
 import { supabase } from "../utils/supabaseClient";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Router } from "next/dist/client/router";
 import { useRouter } from "next/dist/client/router";
 
@@ -11,12 +11,36 @@ export default function groups () {
     let [createMode, setMode] = useState(false)
     const [groupName, setName] = useState("")
     const [groupDesc, setDesc] = useState("")
-    const [nameList, setNames] = useState([])
-    const [num, setNum] = useState("")
+    const [groupsFound, setFound] = useState(false)
+    const [groupList, setGroups] = useState([])
+
+
     if(user == null) {
         user =  supabase.auth.user()
     }
 
+    useEffect(() => {
+        if(user != null && !groupsFound) {
+            fetchGroups()
+            
+        }
+    })
+    const fetchGroups = async () => {
+        console.log("test")
+        const { data, error } = await supabase
+        .from("groupchats")
+        .select()
+        //.like("accepted_members", String(user.email))
+        if(error) {
+            console.log(error)
+        }
+        else {
+            setFound(true)
+            setGroups(data)
+            console.log(data)
+        }
+    }
+    
 
     let testNum = String(1234)
     let newGroupId = "/group/" + testNum
@@ -44,7 +68,7 @@ export default function groups () {
 
     const testPrint = async () => {
         const {data, error} = await supabase
-            .from("chatgroups")
+            .from("groupchat")
             .select("accepted_members")
             .eq("group_id", 6)
         //setNum(data.length)
@@ -94,7 +118,13 @@ export default function groups () {
                 }
             }>Click for Window</button>
 
-
+            {
+                groupList != null && (
+                    groupList.map(group => (
+                        <h1 className = "text-center font-bold">{group.group_name}: {group.accepted_members}</h1>
+                    ))
+                )
+            }
 
             {
                 testArray.map((test) => (

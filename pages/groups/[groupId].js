@@ -294,7 +294,9 @@ export default function groupchat() {
                                                     <div style={{ width: '40vw', display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly' }}>
                                                         {
                                                             <div style={{ display: 'flex', flexDirection: 'column' }}>
+                                                                <h1 className="text-right font-bold text-2xl">Accepted Members</h1>
                                                                 {
+                                                                    
                                                                     memberInfo != null && (
                                                                         memberInfo.map(member => (
                                                                             <h1 className="text-right font-bold text-2xl">{member.full_name}</h1>
