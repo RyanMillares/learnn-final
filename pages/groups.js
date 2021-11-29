@@ -30,7 +30,7 @@ export default function groups () {
         const { data, error } = await supabase
         .from("groupchats")
         .select()
-        //.like("accepted_members", String(user.email))
+        .like("accepted_members", "%" + user.email + "%")
         if(error) {
             console.log(error)
         }
