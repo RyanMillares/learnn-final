@@ -121,6 +121,22 @@ export default function InviteMembers() {
                         <h1 className="text-center font-bold text-3xl">You are not the creator.</h1>
                     ) : ( //creator, main block
                         <h1 className="text-center font-bold text-3xl">Inviting members to {groupInfo.group_name}...</h1>
+                        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                     )
                    )

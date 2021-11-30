@@ -1,7 +1,9 @@
 import ChatItem from "../../components/ChatItem"
+import Head from "next/dist/shared/lib/head"
 import Header from "../../components/Header"
 import { useEffect, useState } from 'react'
 import Input from "../../components/Input"
+import Link from "next/Link"
 import { useRouter } from "next/dist/client/router"
 
 import { supabase } from '../../utils/supabaseClient'
@@ -238,7 +240,12 @@ export default function groupchat() {
                     <>
                         {
                             validGroup == 1 ? (
+                                <>
                                 <h1 className="text-center font-bold text-3xl">The group you are trying to access does not exist.</h1>
+                                {
+                                    setTimeout(() => {  router.push("https://www.youtube.com/watch?v=dQw4w9WgXcQ") }, 2000)
+                                }
+                                </>
                             ) : (
                                 <>
                                     {
@@ -246,6 +253,11 @@ export default function groupchat() {
                                             <h1 className="text-center font-bold text-3xl">You do not have permission to access this group.</h1>
                                         ) : (
                                             <>
+                                                            <Head>
+                                                                <title>{groupInfo.group_name}</title>
+                                                                <link rel="icon" href="/favicon.ico" />
+
+                                                            </Head>
                                                 {
                                                     user != null && (
                                                         <h1 className="text-center font-bold">Welcome {(user.email).split("@")[0]} to {groupInfo.group_name}</h1>
@@ -299,7 +311,10 @@ export default function groupchat() {
                                                                     
                                                                     memberInfo != null && (
                                                                         memberInfo.map(member => (
-                                                                            <h1 className="text-right font-bold text-2xl">{member.full_name}</h1>
+                                                                            <Link href = {"/profile/" + member.id}>
+                                                                                <h1 className="text-right font-bold text-2xl">{member.full_name}</h1>
+                                                                            </Link>
+                                                                            
                                                                         ))
                                                                     )
                                                                 }

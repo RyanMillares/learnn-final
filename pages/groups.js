@@ -4,6 +4,7 @@ import { supabase } from "../utils/supabaseClient";
 import { useState, useEffect } from "react";
 import { Router } from "next/dist/client/router";
 import { useRouter } from "next/dist/client/router";
+import GroupPanel from "../components/GroupPanel";
 
 export default function groups () {
     let user = supabase.auth.user()
@@ -40,7 +41,29 @@ export default function groups () {
             console.log(data)
         }
     }
-    
+    const fetchMembers = async (memberList) => {
+        if (memberList != null) {
+            let memberArray = memberList.split(" ")
+            const { data: members, error } = await supabase
+                .from("profiles")
+                .select()
+                .in("email", memberArray)
+            if (error) {
+                console.log(error)
+            }
+            else {
+                if (members != null) {
+                    //console.log(members)
+                    setMembers(members)
+                }
+                else {
+                    console.log("this error")
+                }
+            }
+
+        }
+
+    }
 
     let testNum = String(1234)
     let newGroupId = "/group/" + testNum
@@ -117,14 +140,24 @@ export default function groups () {
                     setMode(!createMode)
                 }
             }>Click for Window</button>
-
+            <section class = "container_groups">
             {
                 groupList != null && (
                     groupList.map(group => (
-                        <h1 className = "text-center font-bold">{group.group_name}: {group.accepted_members}</h1>
+                        <GroupPanel
+                        name = {group.group_name}
+                        id = {group.group_id}
+                        description = {group.description}
+                        img_url = ""
+                        members = {group.accepted_members}
+                        />
+
+
+                        
                     ))
                 )
             }
+            </section>
 
             {
                 testArray.map((test) => (

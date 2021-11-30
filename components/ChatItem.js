@@ -187,7 +187,10 @@ export default function ChatItem({ sender, date_sent, message, msgId, table, upd
                 {
                     (currUser.email == name) && ( //currUser.email == name
                         (msgSettings) ? (
-                            <span style={{ color: 'white', float: 'left', display: 'flex', flexDirection: 'column', marginBottom: '0px' }}>
+                            <> 
+                                { // --> FIND way to keep text on right when hidden
+                                    !editMode && (
+                                        <span style={{ color: 'white', float: 'left', display: 'flex', flexDirection: 'column', marginBottom: '0px' }}>
                                 <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-evenly' }}>
                                     <button type="submit" id="edit" className="bg-blue-500 rounded px-4 py-0.25" onClick={() => {
                                         setEditMode(true)
@@ -208,6 +211,10 @@ export default function ChatItem({ sender, date_sent, message, msgId, table, upd
 
                                 </div>
                             </span>
+                                    )
+                                }
+                            
+                            </>
                         ) : (
                             <div> </div>
                         )
