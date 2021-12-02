@@ -15,8 +15,8 @@ export default function InviteMembers() {
     const [validGroup, setValid] = useState(0)
     const [hasPerms, setPerms] = useState(false)
 
-    const [userList, setUsers] = useState("")
-    const [memberList, setMembers] = useState("")
+    const [userList, setUsers] = useState([])
+    const [memberList, setMembers] = useState([])
     const [groupInfo, setInfo] = useState({})
 
     useEffect(() => {
@@ -29,7 +29,7 @@ export default function InviteMembers() {
         else {
             if(hasPerms){
                 fetchUsers()
-                //fetchMembers()
+                fetchMembers()
             }   
 
         }
@@ -118,9 +118,20 @@ export default function InviteMembers() {
                     <h1 className="text-center font-bold text-3xl">The group you are trying to access does not exist.</h1>
                    ) : ( //valid
                     !hasPerms ? ( // not creator
+                        <>
                         <h1 className="text-center font-bold text-3xl">You are not the creator.</h1>
+                        </>
                     ) : ( //creator, main block
+                        <>
                         <h1 className="text-center font-bold text-3xl">Inviting members to {groupInfo.group_name}...</h1>
+                        {
+                            memberList != null && (
+                                memberList.map(member => (
+                                    <p>{member.full_name}</p>
+                                ))
+                            )
+                        }
+                        </>
                         
 
 

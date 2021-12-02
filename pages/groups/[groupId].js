@@ -61,6 +61,7 @@ export default function groupchat() {
         else {
             if (hasPerms) {
                 fetchMessages()
+                console.log('nhbjg')
                 if (groupInfo != null && memberInfo.length == 0) {
                     fetchMembers(groupInfo.accepted_members)
                 }
@@ -250,7 +251,12 @@ export default function groupchat() {
                                 <>
                                     {
                                         !hasPerms ? (
-                                            <h1 className="text-center font-bold text-3xl">You do not have permission to access this group.</h1>
+                                            <>
+                                                <h1 className="text-center font-bold text-3xl">You do not have permission to access this group.</h1>
+                                                {
+                                                    //setTimeout(() => {  router.push("https://www.youtube.com/watch?v=dQw4w9WgXcQ") }, 20000)
+                                                }
+                                            </>
                                         ) : (
                                             <>
                                                             <Head>
@@ -312,7 +318,7 @@ export default function groupchat() {
                                                                     memberInfo != null && (
                                                                         memberInfo.map(member => (
                                                                             <Link href = {"/profile/" + member.id}>
-                                                                                <h1 className="text-right font-bold text-2xl">{member.full_name}</h1>
+                                                                                <h1  style = {{cursor: 'pointer'}} className="text-right font-bold text-2xl">{member.full_name}</h1>
                                                                             </Link>
                                                                             
                                                                         ))

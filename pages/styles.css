@@ -2,6 +2,7 @@
 html {
     background-color: #FFFFFF;
 }
+/* HEADER COMPONENT */
 nav {
     display: flex;
     flex-direction: row;
@@ -44,6 +45,7 @@ header {
     justify-content: space-between;
     align-items: center;
 }
+/* CHAT FEATURE */
 .forumItem {
     color: black;
     padding-top: 5px;
@@ -77,12 +79,8 @@ header {
     border-color: #005598;
     border-radius: 10px;
     background: radial-gradient(#F7FFF7, #CFEFCF);
-
-    
     
 }
-
-
 
 .forumEnter {
     margin-left: 10vw;
@@ -128,28 +126,8 @@ textarea .editMsg {
     background-image: url('https://derpicdn.net/img/view/2017/5/17/1438986.png');
     background-image: url('https://derpicdn.net/img/2017/5/17/1438986/large.png');
 }
-#overlay-back {
-    position   : absolute;
-    top        : 0;
-    left       : 0;
-    width      : 100%;
-    height     : 100%;
-    background : #000;
-    opacity    : 0.6;
-    filter     : alpha(opacity=60);
-    z-index    : 5;
-    display    : none;
-}
-
-#overlay {
-    position : absolute;
-    top      : 0;
-    left     : 0;
-    width    : 100%;
-    height   : 100%;
-    z-index  : 10;
-    display  : none;
-} 
+/* GROUP PAGE FEATURE */
+ 
 .input-focused {
     box-shadow: 0 0 0 9999px #000000b0;
     display: flex;

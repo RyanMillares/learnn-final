@@ -189,7 +189,7 @@ export default function ChatItem({ sender, date_sent, message, msgId, table, upd
                         (msgSettings) ? (
                             <> 
                                 { // --> FIND way to keep text on right when hidden
-                                    !editMode && (
+                                    !editMode ? (
                                         <span style={{ color: 'white', float: 'left', display: 'flex', flexDirection: 'column', marginBottom: '0px' }}>
                                 <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-evenly' }}>
                                     <button type="submit" id="edit" className="bg-blue-500 rounded px-4 py-0.25" onClick={() => {
@@ -211,6 +211,10 @@ export default function ChatItem({ sender, date_sent, message, msgId, table, upd
 
                                 </div>
                             </span>
+                                    ) : (
+                                        <span style = {{float: 'left'}}>
+                                            &nbsp;
+                                        </span>
                                     )
                                 }
                             
@@ -226,8 +230,8 @@ export default function ChatItem({ sender, date_sent, message, msgId, table, upd
                         editMode ? (
                             <>
                             <form className="flex flex-col" onSubmit={editMsg}>
-                                <textarea id="editMsg" className="rounded px-3 py-2" style={{ backgroundColor: '#101C1D', color: 'white', borderRadius: '10px', border: '5px solid #a4b0be', width: '35vw' }} value={value} onChange={(e) => setValue(e.target.value)} />
-                                <div className="flex flex-row items-center justify-center">
+                                <textarea id="editMsg" className="rounded px-3 py-2" style={{ fontSize: '14px', height: 'auto', backgroundColor: '#DDEEFF', color: 'black', borderRadius: '5px', border: '2px solid #5577AA', width: '35vw' }} value={value} onChange={(e) => setValue(e.target.value)} />
+                                <div className="flex flex-row items-center justify-center" style = {{color: 'black'}}>
                                     <button type="cancel" id="cancel" className="bg-red-300 rounded px-4 py-0.25" style={{ marginLeft: '1px', marginRight: '1px' }} onClick={() => {
                                         setEditMode(false)
                                         setSettings(false)

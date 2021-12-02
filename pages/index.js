@@ -11,6 +11,18 @@ import React, { useState } from "react";
 export default function Home() {
   const [selectedImage, setSelectedImage] = useState(null);
   const { user } = Auth.useUser()
+  const addTestUser = async () => {
+    let { user, error } = await supabase.auth.signUp({
+      email: 'rmillares@chapman.edu',
+      password: 'swedrfgyunur6itfgyo8h'
+    })
+      if(error) {
+        console.log(error)
+      }
+      else {
+        console.log("user added")
+      }
+  }
   return (
     
     <>
@@ -26,7 +38,15 @@ export default function Home() {
     }
     
     <main>
-      {
+    <h1 className = "text-center font-bold text-4xl">
+      If guest: display list of potential features and give link to a login page. If user, display recent activity of some sort (dashboard)
+      Move all this stuff somewhere else 
+   
+    </h1>
+    <button type = "button" onClick = {() => {
+      addTestUser()
+    }}>Click to add something lol</button>
+       {
         user ? (<div>
           <h1 className = "text-center font-bold">Welcome {(user.email).split("@")[0]}</h1>
          
