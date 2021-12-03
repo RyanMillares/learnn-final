@@ -26,7 +26,7 @@ nav {
 
 }
 .menuItems {
-    width: 80%;
+    width: 100%;
 
 }
 .profileDisplay {
@@ -153,9 +153,9 @@ textarea .editMsg {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    background: radial-gradient(#F7FFF7, #DFFFDF);
     min-height: 200px;
     max-width: 400px;
-    background: radial-gradient(#F7FFF7, #CFEFCF);
     border-style: solid;
     border-width: 3px;
     border-color: #005598;
@@ -168,11 +168,13 @@ textarea .editMsg {
 .card_groups:hover {
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
     text-decoration: underline;
+    background: radial-gradient(#F7FFF7, #CFEFCF);
+
     /*border-width: 4px;*/
 
 }
 .container_groups {
-    margin-left: 10px;
+    margin-left: 5vw;
     width: 400vw;
     display: flex;
     flex-direction: row;

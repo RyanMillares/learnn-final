@@ -111,7 +111,7 @@ export default function groups () {
                         <div class="input-focused">
                             <form>
                             <h1 className = "text-center font-bold">Create New Group</h1>
-                                <h2>Group Name: </h2><input type = "text" id = "groupname" style = {{width: '70vw', maxWidth: '100%'}} placeholder = "Enter group name" value = {groupName} className = "border-2 border-blue-400 rounded px-3 py-2 " onChange = {(e) => setName(e.target.value)}/>
+                                <h2>Group Name: </h2><input type = "text" id = "groupname" style = {{width: '70vw', maxWidth: '100%'}} placeholder = "Enter group name" value = {groupName} className = "border-2 border-blue-400 rounded px-3 py-2 " onChange = {(e) => {if(e.target.value.length < 32) setName(e.target.value)}}/>
                                 <h2>Group Description: </h2><textarea type = "text" id = "groupdesc" style = {{width: '70vw', maxWidth: '100%',marginBottom: '5px'}} placeholder = "Enter group description" value = {groupDesc} className = "border-2 border-blue-400 rounded px-3 py-2 " onChange = {(e) => setDesc(e.target.value)}/>
                                 <div style = {{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
                                     <button type = "cancel" className = "bg-red-500 rounded px-12 py-2" onClick = {() => {
@@ -128,18 +128,18 @@ export default function groups () {
                 )
             }
             
-            <button type = "button" className = "bg-yellow-500 rounded px-12 py-2" onClick = {() => {
+            <button type = "button" style = {{display: 'none'}} className = "bg-yellow-500 rounded px-12 py-2" onClick = {() => {
                 createGroup()
             }} >Insert test group</button>
 
             <Link href= {newGroupId} className="link"><a>Groups</a></Link><br/>
             
             
-            <button type = "submit" id = "test" className = "bg-green-600 rounded px-12 py-2" onClick = {
+            <button type = "submit"  style = {{marginLeft: '80vw'}} id = "test" className = "bg-green-600 rounded px-12 py-2" onClick = {
                 () => {
                     setMode(!createMode)
                 }
-            }>Click for Window</button>
+            }>Create New Group</button>
             <section class = "container_groups">
             {
                 groupList != null && (

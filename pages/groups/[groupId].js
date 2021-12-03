@@ -61,7 +61,7 @@ export default function groupchat() {
         else {
             if (hasPerms) {
                 fetchMessages()
-                console.log('nhbjg')
+                //console.log('nhbjg')
                 if (groupInfo != null && memberInfo.length == 0) {
                     fetchMembers(groupInfo.accepted_members)
                 }

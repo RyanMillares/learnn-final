@@ -1,9 +1,100 @@
 import Link from 'next/Link'
+import { useEffect, useState } from 'react'
 import { supabase } from '../utils/supabaseClient'
+
 
 
 export default function Header({currPage}) {
     const user = supabase.auth.user()
+    const [userInfo, setInfo] = useState(null)
+    const [collegeName, setCollege] = useState(null)
+    let ranOnce = false
+    useEffect(() => {
+       
+        console.log("ran useEffect")
+        if (user != null && userInfo == null) {
+            fetchUser()
+            console.log("fetching user...")
+        }
+        else if (userInfo != null) {
+            console.log("fetched user...")
+            if (!userInfo.schoolFixed) {
+                if (collegeName == null) {
+                    fetchSchool()
+                    console.log("fetching school...")
+
+                }
+                else if(!ranOnce) {
+                    console.log("updating school and profile...")
+
+                    updateUserSchool()
+                }
+            }
+            else {
+                console.log("updated profile...")
+                
+
+                //do nothing, all is well
+            }
+        }
+        console.log(collegeName)
+        
+        
+    })
+
+    const fetchUser = async () => {
+        const {data, error} = await supabase 
+        .from("profiles")
+        .select()
+        .eq("email", user.email)
+        if (error) {
+            console.log(error)
+        }
+        else {
+            setInfo(data[0])
+        }
+
+    }
+    const fetchSchool = async () => {
+        const {data, error} = await supabase 
+        .from("college_emails")
+        .select("college")
+        .eq("tag", userInfo.school)
+        if(error) {
+            console.log(error)
+        }
+        else {
+            if(data.length > 0) {
+                setCollege(data[0].college)
+
+            }
+            else {
+                setCollege("Other")
+            }
+        }
+    }
+    const updateUserSchool = async () => {
+        const {data, error} = await supabase 
+        .from("profiles")
+        .update({school: collegeName, schoolFixed: true})
+        .eq("email", userInfo.email)
+        if(error) {
+            console.log(error)
+        }
+        else {
+            ranOnce = true
+            let tempObj = userInfo
+            tempObj.schoolFixed = true 
+            setInfo(tempObj)
+        }
+    }
+
+
+
+
+
+
+
     return (
         <div class = "HeaderBar">
             <div class = "menuItems">

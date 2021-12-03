@@ -1,5 +1,5 @@
 import { supabase } from '../utils/supabaseClient'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image'
 
 function monthToNum1(month) { //this is faster
@@ -70,8 +70,61 @@ export default function ChatItem({ sender, date_sent, message, msgId, table, upd
     const [editMode, setEditMode] = useState(false)
     const [editted, setEditted] = useState(false)
     const [value, setValue] = useState  (message)
+    const [Avatar, setAvatarUrl] = useState(null)
+    const [blob, setBlob] = useState(null)
+    const [fetching, setFetching] = useState(false)
+    useEffect(() => {
+        if(Avatar == null) {
+            fetchAvatarUrl(sender)
+            
+        }
+        else {
+            if(blob == null) {
+                downloadImage(Avatar)
+            }   
+            
+        }
+        
+    })
+    async function downloadImage(path) {
+        console.log(path)
+        try {
+          const { data, error } = await supabase.storage.from('avatars').download(path)
+          if (error) {
+            //throw error
+            console.log(error)
+          }
+          const url = URL.createObjectURL(data)
+          //console.log(url)
 
-    
+          setBlob (url)
+          
+        } catch (error) {
+          console.log('Error downloading image: ', error.message)
+          setBlob ("../images/default.jpg")
+
+        }
+      }
+      async function fetchAvatarUrl(sender) {
+          
+              const {data, error} = await supabase
+              .from("profiles")
+              .select("avatar_url")
+              .eq("email", sender)
+              if(error) {
+                  console.log(error)
+                  setAvatarUrl("default.jpg")
+              }
+              else {
+                  console.log(data[0].avatar_url)
+                setAvatarUrl(data[0].avatar_url)
+                setFetching(true)
+              }
+              
+
+          
+      }
+      //fetchAvatarUrl(sender)
     const deleteMessage = async () => {
         let { data: messages, error} = await supabase
             .from(table)
@@ -119,6 +172,7 @@ export default function ChatItem({ sender, date_sent, message, msgId, table, upd
     let userEmail = name.split("@");
     let userName = userEmail[0]
 
+
     let editMsg = e => {
         e.preventDefault()
         updateMessage(value)
@@ -128,6 +182,7 @@ export default function ChatItem({ sender, date_sent, message, msgId, table, upd
     //console.log(name == lastPoster)
     //setLastPoster(name)
     //document.addEventListener("contextmenu", (event) => {event.preventDefault()});
+    //console.log(Avatar)
     
 
 
@@ -149,7 +204,7 @@ export default function ChatItem({ sender, date_sent, message, msgId, table, upd
                     <h1 style={{ textAlign: currUser.email == name ? 'right' : 'left' }}>
                         {
                             currUser.email != name && (
-                                <img src="../images/default.jpg" style={{ width: '50px', height: '50px', borderRadius: '100%', overflow: 'hidden', display: 'inline' }} />
+                                <img src= {blob != null ? blob : "../images/default.jpg"} style={{ width: '50px', height: '50px', borderRadius: '100%', overflow: 'hidden', display: 'inline' }} />
                             )
                         }
 
@@ -176,7 +231,7 @@ export default function ChatItem({ sender, date_sent, message, msgId, table, upd
                         }
                         {
                             currUser.email == name && ( //add function later to fetch this
-                                <img src="../images/lyra.png" style={{ width: '50px', height: '50px', borderRadius: '100%', overflow: 'hidden', display: 'inline' }} />
+                                <img src={blob != null ? blob : "../images/default.jpg"} style={{ width: '50px', height: '50px', borderRadius: '100%', overflow: 'hidden', display: 'inline' }} />
                             )
                         }
                     </h1>
