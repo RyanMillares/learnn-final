@@ -1,13 +1,15 @@
 import Link from 'next/Link'
 import { useEffect, useState } from 'react'
 import { supabase } from '../utils/supabaseClient'
-
+import { useRouter } from 'next/dist/client/router'
+import Avatar from './Avatar'
 
 
 export default function Header({currPage}) {
     const user = supabase.auth.user()
     const [userInfo, setInfo] = useState(null)
     const [collegeName, setCollege] = useState(null)
+    const router = useRouter()
     let ranOnce = false
     useEffect(() => {
        
@@ -89,41 +91,66 @@ export default function Header({currPage}) {
         }
     }
 
-
-
-
-
-
-
     return (
         <div class = "HeaderBar">
-            <div class = "menuItems">
-            <nav>
+            
+            <nav id = "left">
             <Link href="/">
                 <div className="logo">
-                <svg className="lightbulb" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                </svg>
-                <h1 className = "text-5xl font-bold">Learn'N</h1>
+                
+                <svg className="lightbulb" fill="none" viewBox="0 0 24 24" stroke="lime">
+  <defs>
+    <filter id="f1" x="0" y="0">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1" />
+    </filter>
+  </defs>
+  <path filter="url(#f1)" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+  Sorry, your browser does not support inline SVG.  
+</svg>
+               
+
+                <h1>Learn'N</h1>
                 </div>
             </Link>
-            <Link href="/groups" className="link"><a>Groups</a></Link>
-            <Link href="/groups/forums" className="link"><a>Forums</a></Link>
-            <a href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ">Free Offers</a>
-
+            <Link href="/groups" className="link"><a id = "navItemLeft" className = "text-2xl" style = {{marginBottom: 'auto', marginTop: 'auto', marginLeft: '5vw', borderRadius: '20px 0px 0px 0px'}}>Groups</a></Link>
+            <Link href="/groups/forums" className="link"><a id = "navItemLeft" className = "text-2xl"  style = {{marginBottom: 'auto', marginTop: 'auto'}}>Forums</a></Link>
+            <a id = "navItemLeft" className = "text-2xl" href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ" style = {{marginBottom: 'auto', marginTop: 'auto',  borderRadius: '0px 20px 0px 0px'}}>Free Offers</a>
+            
             
             </nav>
-            <div class = "profileDisplay">
+            <nav id = "right">
+                <div id = "navItemRight" onClick = {() => {
+                    router.push("/profile/" + userInfo.id)
+                }}>
                 {
-                    (user != null) && (
-                        <h1>Welcome {(user.email).split("@")[0]}</h1>
+                    (userInfo != null) && (
+                        <h1 style = {{marginRight: '15px'}}>{userInfo.full_name}</h1>
                     )
                
                 }
-            </div>  
+                {
+                    userInfo != null && (
+                        <Avatar
+                            url={userInfo.avatar_url}
+                            size={64}
+                            onUpload={(url) => {
+                                setAvatar(url)
+                                updateProfile({ avatar_url: url })
+                            }
+                            }
+                            isProfile={false}
+                        />
+                        
+                    )
+                }
+                </div>
+            </nav>
+             
+            
+             
     
             
-            </div>
+        
             
         </div>
         

@@ -3,35 +3,98 @@ html {
     background-color: #FFFFFF;
 }
 /* HEADER COMPONENT */
-nav {
+.HeaderBar {
+    color: white;
     display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background-color: #1D1267;
+    /*border-bottom: 2px solid #77FF99; */
+    margin-bottom: 5px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
+
+
+
+}
+nav #left {
+    font-family: NC Burrata,sans-serif;
+
+    display: flex;
     column-gap: 20px;
     padding-right: 20px;
     padding-left: 20px;
-    background-color: lightgray;
+}
+#navItemLeft {
+    
+    padding-left: 2vw;
+    background-color: #1D9B09;
+
+    padding-right: 2vw;
+    border: 1px solid #38D31F;
+    border-bottom: none;
+}
+#navItemLeft:hover {
+    background-color: #38D31F;
+}
+#navItemRight {
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+    margin-right: 2vw;
+    padding-right: 5px;
+    padding-left: 5px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.25);
+    border: 2px solid #1D1267;
+    border-radius: 10px;
+    
+
+    transition: font-size 250ms,background-color 250ms, border-color 250ms, color 250ms;
+
+}
+#navItemRight:hover {
+    border-color: black;
+    color: black;
+    background-color: rgb(164, 217, 250);
+    font-size: 20px;
+    transition: font-size 250ms, background-color 250ms, border-color 250ms, color 250ms;
+}
+nav #right {
+    background-color: pink; /* bro why you no work?? im literally using this nav #right and nothing here exists??*/
+}
+nav #right:hover {
+    
 }
 .logo {
     display: flex;
     flex-direction: row;
+    font-family: Georgia, Times, "Times New Roman", serif;
+    margin-left: 15px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-weight: none;
+    font-size: 2.5rem;
+    cursor: pointer;
+
+
+
 }
 .lightbulb {
     width: 60px;
 }
-.headerBar {
-    display: flex;
-    flex-direction: row;
 
-}
-.menuItems {
-    width: 100%;
 
-}
 .profileDisplay {
     background-color: lightskyblue;
     display: inline;
+    justify-content: end;
+    float: right;
 }
 .pfp {
     border-radius: 100px;
@@ -85,6 +148,21 @@ header {
 .forumEnter {
     margin-left: 10vw;
     margin-right: 15vw;
+}
+.forum_accepted {
+    max-height: 80vh;
+    height: 75vh;
+    
+
+    overflow-y: scroll;
+    
+    border-width: 2px;
+    border-style: groove;
+
+    border-color: #005598;
+    border-radius: 10px;
+    background: radial-gradient(#F7FFF7, #CFEFCF);
+    
 }
 .forumMessage {
     border: 5px bevel #00BBFF;
@@ -153,12 +231,13 @@ textarea .editMsg {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background: radial-gradient(#F7FFF7, #DFFFDF);
+    /*background: radial-gradient(#F7FFF7, #DFFFDF);*/
+    background-color: #EEEEEE;
     min-height: 200px;
     max-width: 400px;
-    border-style: solid;
+    /*border-style: solid;
     border-width: 3px;
-    border-color: #005598;
+    border-color: #005598;*/
     
     border-radius: 10px;
     padding: 20px;

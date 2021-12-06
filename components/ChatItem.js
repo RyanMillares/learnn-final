@@ -71,16 +71,17 @@ export default function ChatItem({ sender, date_sent, message, msgId, table, upd
     const [editted, setEditted] = useState(false)
     const [value, setValue] = useState  (message)
     const [Avatar, setAvatarUrl] = useState(null)
+    const [userInfo, setInfo] = useState(null)
     const [blob, setBlob] = useState(null)
     const [fetching, setFetching] = useState(false)
     useEffect(() => {
-        if(Avatar == null) {
+        if(userInfo == null) {
             fetchAvatarUrl(sender)
             
         }
         else {
             if(blob == null) {
-                downloadImage(Avatar)
+                downloadImage(userInfo.avatar_url)
             }   
             
         }
@@ -109,7 +110,7 @@ export default function ChatItem({ sender, date_sent, message, msgId, table, upd
           
               const {data, error} = await supabase
               .from("profiles")
-              .select("avatar_url")
+              .select()
               .eq("email", sender)
               if(error) {
                   console.log(error)
@@ -117,7 +118,7 @@ export default function ChatItem({ sender, date_sent, message, msgId, table, upd
               }
               else {
                   console.log(data[0].avatar_url)
-                setAvatarUrl(data[0].avatar_url)
+                setInfo(data[0])
                 setFetching(true)
               }
               
@@ -218,7 +219,8 @@ export default function ChatItem({ sender, date_sent, message, msgId, table, upd
                                     )
                                 }</i>
                             )
-                        } {userName} {
+                        } { userInfo != null && (userInfo.full_name)
+                            } {
                             currUser.email != name && (
                                 <i style={{ fontSize: '12px' }}> Sent {formattedDate} {finalTime.convTime} {
                                     finalTime.isPM ? (

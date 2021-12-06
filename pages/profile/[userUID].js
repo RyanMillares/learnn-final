@@ -152,7 +152,9 @@ export default function userProfile() {
                                                             onUpload={(url) => {
                                                                 setAvatar(url)
                                                                 updateProfile({ avatar_url: url })
-                                                            }}
+                                                            }
+                                                        }
+                                                        isProfile = {true}
                                                         />
                                                             </div>
                                                             <div style = {{display: 'flex', flexDirection: 'column'}}>

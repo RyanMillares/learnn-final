@@ -311,14 +311,14 @@ export default function groupchat() {
                                                     </div>
                                                     <div style={{ width: '40vw', display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly' }}>
                                                         {
-                                                            <div style={{ display: 'flex', flexDirection: 'column' }}>
-                                                                <h1 className="text-right font-bold text-2xl">Accepted Members</h1>
+                                                            <div className = "forum_accepted" style={{ display: 'flex', flexDirection: 'column' }}>
+                                                                <h1 className="text-left font-bold" style = {{fontSize: '20px'}}>Accepted Members</h1>
                                                                 {
                                                                     
                                                                     memberInfo != null && (
                                                                         memberInfo.map(member => (
                                                                             <Link href = {"/profile/" + member.id}>
-                                                                                <h1  style = {{cursor: 'pointer'}} className="text-right font-bold text-2xl">{member.full_name}</h1>
+                                                                                <h1  style = {{cursor: 'pointer'}} className="text-left font-bold" style = {{fontSize: '15px'}}>{member.full_name}</h1>
                                                                             </Link>
                                                                             
                                                                         ))

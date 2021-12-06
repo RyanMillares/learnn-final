@@ -159,11 +159,7 @@ export default function groups () {
             }
             </section>
 
-            {
-                testArray.map((test) => (
-                    <p>{test[0].name}</p>
-                ))
-            }
+           
             
             
         </div>

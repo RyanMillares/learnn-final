@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { supabase } from '../utils/supabaseClient'
 
-export default function Avatar({ url, size, onUpload }) {
+export default function Avatar({ url, size, onUpload, isProfile }) {
   const [avatarUrl, setAvatarUrl] = useState(null)
   const [uploading, setUploading] = useState(false)
 
@@ -65,7 +65,9 @@ export default function Avatar({ url, size, onUpload }) {
       ) : (
         <div className="avatar no-image" style={{ height: size, width: size }} />
       )}
-      <div style={{ width: size, margin: 'auto', textAlign: 'center' }}>
+      {
+        isProfile && (
+<div style={{ width: size, margin: 'auto', textAlign: 'center' }}>
         <label className="button primary block" htmlFor="single">
           {uploading ? 'Uploading ...' : 'Upload'}
         </label>
@@ -81,6 +83,9 @@ export default function Avatar({ url, size, onUpload }) {
           disabled={uploading}
         />
       </div>
+        )
+      }
+      
     </div>
   )
 }
