@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import Input from "../../components/Input"
 import Link from "next/Link"
 import { useRouter } from "next/dist/client/router"
+import NameAndPic from "../../components/NameAndPic"
 
 import { supabase } from '../../utils/supabaseClient'
 
@@ -45,11 +46,11 @@ export default function groupchat() {
     const [isSame, setSame] = useState([])
     const [allowedUsers, setAllowed] = useState("")
     const [memberInfo, setMembers] = useState([])
+    const [inviteInfo, setInvites] = useState([])
 
     const [validGroup, setValid] = useState(0)
     const [hasPerms, setPerms] = useState(false)
     const [groupInfo, setInfo] = useState({})
-
 
     useEffect(() => {
         if (validGroup == 0) {
@@ -63,7 +64,7 @@ export default function groupchat() {
                 fetchMessages()
                 //console.log('nhbjg')
                 if (groupInfo != null && memberInfo.length == 0) {
-                    fetchMembers(groupInfo.accepted_members)
+                    fetchMembers(groupInfo)
                 }
                 else {
                     //console.log(memberInfo)
@@ -115,26 +116,49 @@ export default function groupchat() {
     }
 
     const fetchMembers = async (memberList) => {
-        if (memberList != null) {
-            let memberArray = memberList.split(" ")
-            const { data: members, error } = await supabase
+        if (memberList.accepted_members != null) {
+            
+            let acceptedArray = memberList.accepted_members.split(" ")
+            const { data: accepted, error } = await supabase
                 .from("profiles")
                 .select()
-                .in("email", memberArray)
+                .in("email", acceptedArray)
             if (error) {
                 console.log(error)
             }
             else {
-                if (members != null) {
+                if (accepted != null) {
                     //console.log(members)
-                    setMembers(members)
+                    setMembers(accepted)
                 }
                 else {
                     console.log("this error")
                 }
             }
 
+            
         }
+        if(memberList.invited_members != null) {
+            let invitedArray = memberList.invited_members.split(" ")
+            const { data: invited, error } = await supabase
+                .from("profiles")
+                .select()
+                .in("email", invitedArray)
+            if (error) {
+                console.log(error)
+            }
+            else {
+                if (invited != null) {
+                    //console.log(members)
+                    setInvites(invited)
+                }
+                else {
+                    console.log("this other error")
+                }
+            }
+
+        }
+        
 
     }
     const fetchMessages = async () => {
@@ -224,7 +248,7 @@ export default function groupchat() {
 
     return (
         <div>
-            <Header />
+            <Header currPage = "groups"/>
 
             {
                 validGroup == 0 ? (
@@ -254,7 +278,8 @@ export default function groupchat() {
                                             <>
                                                 <h1 className="text-center font-bold text-3xl">You do not have permission to access this group.</h1>
                                                 {
-                                                    //setTimeout(() => {  router.push("https://www.youtube.com/watch?v=dQw4w9WgXcQ") }, 20000)
+                                                    //setTimeout(() => {  router.push("https://www.youtube.com/watch?v=dQw4w9WgXcQ") }, 2000)
+                                                    console.log("hello")
                                                 }
                                             </>
                                         ) : (
@@ -312,15 +337,21 @@ export default function groupchat() {
                                                     <div style={{ width: '40vw', display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly' }}>
                                                         {
                                                             <div className = "forum_accepted" style={{ display: 'flex', flexDirection: 'column' }}>
-                                                                <h1 className="text-left font-bold" style = {{fontSize: '20px'}}>Accepted Members</h1>
+                                                                <h1 className="text-left font-bold" style = {{fontSize: '20px', paddingBottom: '5px'}}>Accepted Members</h1>
                                                                 {
                                                                     
                                                                     memberInfo != null && (
+                                                                    
                                                                         memberInfo.map(member => (
-                                                                            <Link href = {"/profile/" + member.id}>
-                                                                                <h1  style = {{cursor: 'pointer'}} className="text-left font-bold" style = {{fontSize: '15px'}}>{member.full_name}</h1>
-                                                                            </Link>
                                                                             
+                                                                                
+                                                                                    <NameAndPic
+                                                                                        userInfo={member}
+                                                                                    />
+                                                                                    
+
+                                                                               
+
                                                                         ))
                                                                     )
                                                                 }
@@ -330,7 +361,27 @@ export default function groupchat() {
                                                         }
                                                         {
                                                             <div style={{ display: 'flex', flexDirection: 'column' }}>
-                                                                hehe
+                                                                <div className = "forum_invited">
+
+                                                                <h1 className="text-left font-bold" style = {{fontSize: '20px', paddingBottom: '5px'}}>Invited Members</h1>
+                                                                {
+                                                                    
+                                                                    inviteInfo != null && (
+                                                                        inviteInfo.map(invitee => (
+                                                                            
+                                                                            <Link href={"/profile/" + invitee.id}>
+                                                                                <>
+                                                                                    <NameAndPic
+                                                                                        userInfo={invitee}
+                                                                                    />
+
+                                                                                </>
+                                                                            </Link>
+
+                                                                        ))
+                                                                    )
+                                                                }
+                                                                </div>
                                                             </div>
                                                         }
 

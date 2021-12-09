@@ -1,6 +1,6 @@
 
 html {
-    background-color: #FFFFFF;
+    background-color: #FEFAFE;
 }
 /* HEADER COMPONENT */
 .HeaderBar {
@@ -8,9 +8,11 @@ html {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    background-color: #1D1267;
+    max-height: 102px;
+    background-color: #292161;
     /*border-bottom: 2px solid #77FF99; */
     margin-bottom: 5px;
+    min-width: 783px;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
 
 
@@ -23,22 +25,99 @@ nav #left {
     column-gap: 20px;
     padding-right: 20px;
     padding-left: 20px;
+
 }
 #navItemLeft {
     
-    padding-left: 2vw;
-    background-color: #1D9B09;
+    padding-left: 2rem;
+    background-color: #27611e;
 
-    padding-right: 2vw;
-    border: 1px solid #38D31F;
+    padding-right: 2rem;
+    border: 1px solid #3f8d33;
     border-bottom: none;
+    font-size: 23px;
 }
 #navItemLeft:hover {
-    background-color: #38D31F;
+    background-color: #3f8d33;
+    transition: background-color 100ms;
 }
+nav #right {
+    background-color: pink; /* bro why you no work?? im literally using this nav #right and nothing here exists??*/
+}
+#navRight {
+    /*background-color: pink; /* bro why you no work?? im literally using this nav #right and nothing here exists??*/
+    margin-right: 5px;
+
+}
+
+/* https://codinhood.com/micro/10-dropdown-menu-animations-css-transform */
+
+/* Menu as a whole animated*/
+.dropdown:hover .dropdown_menu--animated {
+    display: block;
+
+}
+.dropdown_menu--animated {
+    display: none;
+    
+}
+.dropdown_menu--animated #dropItem, #fillerItem{
+    display: block;
+    opacity: 1;
+    z-index: 1;
+    overflow: hidden;
+    padding: 5px 5px 5px 5px;
+    background-color:#1A1055;
+    width: 230px;
+
+}
+.dropdown_menu--animated #dropItem:hover {
+    display: block;
+    opacity: 1;
+    color: black;
+    background-color: rgb(164, 217, 250);
+
+}
+
+.dropdown_menu-6 {
+    animation: growDown 300ms ease-in-out forwards;
+    transform-origin: top center;
+}
+
+@keyframes growDown {
+    0% {
+        transform: scaleY(0);
+    }
+    80% {
+        transform: scaleY(1.1);
+    }
+    100% {
+        transform: scaleY(1);
+    }
+}
+.dropdown_menu-6 {
+    animation: growDown 300ms ease-in-out forwards;
+
+}
+@keyframes rotateX {
+    0% {
+      opacity: 0;
+      transform: rotateX(-90deg);
+    }
+    50% {
+      transform: rotateX(-20deg);
+    }
+    100% {
+      opacity: 1;
+      transform: rotateX(0deg);
+    }
+  }
+
+
+
+
 #navItemRight {
-    margin-top: 3vh;
-    margin-bottom: 3vh;
+    margin-top: 2vh;
     margin-right: 2vw;
     padding-right: 5px;
     padding-left: 5px;
@@ -51,8 +130,9 @@ nav #left {
     align-items: center;
     justify-content: flex-end;
     box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.25);
-    border: 2px solid #1D1267;
-    border-radius: 10px;
+    width: 230px;
+    
+    border-radius: 10px 10px 0px 0px;
     
 
     transition: font-size 250ms,background-color 250ms, border-color 250ms, color 250ms;
@@ -62,15 +142,12 @@ nav #left {
     border-color: black;
     color: black;
     background-color: rgb(164, 217, 250);
-    font-size: 20px;
+    font-size: 18px;
     transition: font-size 250ms, background-color 250ms, border-color 250ms, color 250ms;
 }
-nav #right {
-    background-color: pink; /* bro why you no work?? im literally using this nav #right and nothing here exists??*/
-}
-nav #right:hover {
-    
-}
+
+ 
+
 .logo {
     display: flex;
     flex-direction: row;
@@ -108,23 +185,49 @@ header {
     justify-content: space-between;
     align-items: center;
 }
+/* PROFILE PAGE */
+.profilePage {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-top: 30px;
+}
+.profile_left {
+    display: flex; 
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: top;
+    align-content: top;
+}
+.profile_right {
+    display: flex; 
+    flex-direction: column;
+    align-items: left;
+    align-content: left;
+    margin-right: 25vw;
+
+}
+.profile_item {
+    font-weight: bold;
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
 /* CHAT FEATURE */
 .forumItem {
     color: black;
-    padding-top: 5px;
-    padding-bottom: 5x;
+    padding-top: 3px;
+    padding-bottom: 3px;
     padding-left: 10px;
     padding-right: 10px;
-    margin-bottom: 1px;
-    margin-top: 1px;
+    background-color: #E8FFE8;
 
     transition: background-color 1ms ;
     
 }
 .forumItem:hover {
-    color: white;
-    background-color: rgba(25,50,50,0.75);
-    transition: background-color 1ms;
+    background-color: #c6ecc6;
+    transition: background-color 50ms;
 }
 .forumPage {
     margin-left: 10vw;
@@ -134,14 +237,14 @@ header {
     height: 75vh;
     
 
-    overflow-y: scroll;
+    overflow-y: auto;
     
-    border-width: 5px;
+    border-width: 0px;
     border-style: bevel;
-
+    border-top: 2px solid #005598;
     border-color: #005598;
     border-radius: 10px;
-    background: radial-gradient(#F7FFF7, #CFEFCF);
+    background-color: #E8FFE8;
     
 }
 
@@ -152,17 +255,35 @@ header {
 .forum_accepted {
     max-height: 80vh;
     height: 75vh;
-    
+    padding-left: 5px;
+    padding-right: 5px;
 
-    overflow-y: scroll;
+
+    overflow-y: auto;
     
-    border-width: 2px;
+    border-width: 0px;
     border-style: groove;
 
     border-color: #005598;
     border-radius: 10px;
     background: radial-gradient(#F7FFF7, #CFEFCF);
     
+}
+.forum_invited {
+    max-height: 80vh;
+    height: 75vh;
+    padding-left: 5px;
+    padding-right: 5px;
+
+
+    overflow-y: auto;
+    
+    border-width: 0px;
+    border-style: groove;
+
+    border-color: #005598;
+    border-radius: 10px;
+    background: radial-gradient(#F7FFF7, #CFEFCF);
 }
 .forumMessage {
     border: 5px bevel #00BBFF;
@@ -189,14 +310,24 @@ textarea .editMsg {
 .forums {
     background-repeat: no-repeat;
     
-    
-    
     background-attachment: fixed;
     
     background-size: 100%;
     overflow: hidden;
     
 
+}
+.groupMemberItem {
+    cursor: pointer;
+    max-height: 80px;
+}
+.groupMemberItem:hover {
+    cursor: pointer;
+    color: darkgreen;
+    
+}
+h1 #listItem {
+    cursor: pointer;
 }
 .useless {
     background-image: linear-gradient(#FFEEFF, #EEFFEE);
@@ -232,7 +363,7 @@ textarea .editMsg {
     flex-direction: column;
     justify-content: space-between;
     /*background: radial-gradient(#F7FFF7, #DFFFDF);*/
-    background-color: #EEEEEE;
+    background-color: #d7f7d7;
     min-height: 200px;
     max-width: 400px;
     /*border-style: solid;
@@ -247,7 +378,7 @@ textarea .editMsg {
 .card_groups:hover {
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
     text-decoration: underline;
-    background: radial-gradient(#F7FFF7, #CFEFCF);
+    background: radial-gradient(#F7FFF7, #DFFFDF);
 
     /*border-width: 4px;*/
 
@@ -260,4 +391,59 @@ textarea .editMsg {
     flex-wrap: wrap;
     max-width: 80vw;
     gap: 1em;
+}
+.mainInviteGrid {
+    margin-top: 20px;
+    min-height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+}
+/*.membersInviteGrid {
+    margin: 0;
+    min-height: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+   
+
+}
+*/
+.membersInviteGrid {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    height: 75vh;
+    
+
+    overflow-y: auto;
+    
+    border-width: 0px;
+    border-style: bevel;
+    border-top: 2px solid #005598;
+    border-color: #005598;
+    border-radius: 10px;
+    background-color: #E8FFE8;
+}
+.invitedMembersGrid {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    
+}
+.membersInviteBox {
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(250px, 1fr));
+}
+
+.evenMoreGrid {
+    margin: 0;
+    min-height: 100%;
+    max-height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 2px;
+    padding-right: 2px;
 }

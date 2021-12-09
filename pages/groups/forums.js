@@ -146,7 +146,7 @@ export default function forums () {
    
     return (
         <div>
-        <Header/>
+        <Header currPage = "forums"/>
         {
             user != null && (
                 <h1 className = "text-center font-bold">Welcome {(user.email).split("@")[0]}</h1>

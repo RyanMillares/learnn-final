@@ -75,12 +75,12 @@ export default function ChatItem({ sender, date_sent, message, msgId, table, upd
     const [blob, setBlob] = useState(null)
     const [fetching, setFetching] = useState(false)
     useEffect(() => {
-        if(userInfo == null) {
+        if(userInfo == null && (isNew || newDay)) {
             fetchAvatarUrl(sender)
             
         }
         else {
-            if(blob == null) {
+            if(blob == null && (isNew || newDay)) {
                 downloadImage(userInfo.avatar_url)
             }   
             
@@ -193,7 +193,7 @@ export default function ChatItem({ sender, date_sent, message, msgId, table, upd
 
     return (
         
-            <div className = "forumItem"> 
+            <div className = "forumItem" style = {{backgroundColor: editMode ? "#c6ecc6" : ""}}> 
                 {
                     (newDay) && (
                         <h1 style = {{textAlign: 'center', fontStyle: 'italic', fontWeight: 'bold'}}> {formattedDate} </h1>
@@ -249,12 +249,9 @@ export default function ChatItem({ sender, date_sent, message, msgId, table, upd
                                     !editMode ? (
                                         <span style={{ color: 'white', float: 'left', display: 'flex', flexDirection: 'column', marginBottom: '0px' }}>
                                 <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-evenly' }}>
-                                    <button type="submit" id="edit" className="bg-blue-500 rounded px-4 py-0.25" onClick={() => {
-                                        setEditMode(true)
-
-                                    }}>Edit</button>
-                                    <i> </i>
-                                    <button type="submit" id="delete" className="bg-red-600 rounded px-4 py-0.25" onClick={() => {
+                                    
+                                    
+                                    <button type="submit" id="delete" className="bg-red-300 rounded px-4 py-0.25 text-black" onClick={() => {
                                         if(confirm("Are you sure you want to delete your message: \n\n\"" + message + "\"\n\nThis action cannot be undone.")) {
                                             deleteMessage()
 
@@ -265,6 +262,11 @@ export default function ChatItem({ sender, date_sent, message, msgId, table, upd
                                     }
 
                                     }>Delete</button>
+                                    <i> </i>
+                                    <button type="submit" id="edit" className="bg-blue-300 rounded px-4 py-0.25 text-black" onClick={() => {
+                                        setEditMode(true)
+
+                                    }}>Edit</button>
 
                                 </div>
                             </span>
@@ -310,7 +312,7 @@ export default function ChatItem({ sender, date_sent, message, msgId, table, upd
                         ) : (
                             <>
                             
-                            <div className = "forumMessage" style = {{fontSize: '14px', backgroundColor: currUser.email == name ? '#003377' : 'dimgray', color: currUser.email == name ? 'white' : 'white'}} onClick = {() => {
+                            <div className = "forumMessage" style = {{fontSize: '14px', backgroundColor: currUser.email == name ? '#003377' : 'dimgray', color: currUser.email == name ? 'white' : 'white', cursor: currUser.email == name ? 'pointer' : ''}} onClick = {() => {
                                 if(!editMode) {
                                     setSettings(!msgSettings)
 

@@ -2,6 +2,10 @@ import { useRouter } from "next/dist/client/router";
 import { useState, useEffect } from "react";
 import Header from "../../../components/Header";
 import { supabase } from "../../../utils/supabaseClient";
+import NamePicAdd from "../../../components/NamePicAdd";
+import NameAndPic from "../../../components/NameAndPic";
+import NamePicDel from "../../../components/NamePicDel";
+import Head from "next/dist/shared/lib/head";
 
 export default function InviteMembers() {
     
@@ -15,9 +19,10 @@ export default function InviteMembers() {
     const [validGroup, setValid] = useState(0)
     const [hasPerms, setPerms] = useState(false)
 
-    const [userList, setUsers] = useState([])
-    const [memberList, setMembers] = useState([])
+    const [userList, setUsers] = useState(null)
+    const [memberList, setMembers] = useState(null)
     const [groupInfo, setInfo] = useState({})
+    const [invites, setInvites] = useState([])
 
     useEffect(() => {
         if(validGroup == 0){
@@ -27,9 +32,12 @@ export default function InviteMembers() {
             
         }
         else {
-            if(hasPerms){
-                fetchUsers()
-                fetchMembers()
+            if(hasPerms){ //break this or else inf loop
+                if(userList == null || memberList == null) {
+                    fetchUsers()
+                    fetchMembers()
+                }
+
             }   
 
         }
@@ -84,7 +92,7 @@ export default function InviteMembers() {
     const fetchMembers = async () => {
         const {data, error} = await supabase 
         .from("profiles")
-        .select("full_name")
+        .select()
         if(error) {
             console.log(error)
         }
@@ -94,14 +102,31 @@ export default function InviteMembers() {
         }
         
     }
+    const lmao = () => {
+        console.log(invites)
+    }
+    const addEmail = async (email) => {
+        if(!invites.includes(email)) {
+            setInvites([...invites, email])
+
+        }
+        lmao()
+    }
+    const removeEmail = async (email) => {
+        let tempArray = invites
+        const index = tempArray.indexOf(email)
+        if(index > -1) {
+            tempArray.splice(index, 1)
+        }
+        setInvites(tempArray)
+        lmao()
+    }
     
     
     return (
         <div>
-            <Header/>
-            <button type = "button" className = "bg-green-500" onClick = {() => {
-                fetchMembers()
-            }}>Click me</button>
+            <Header currPage = "groups"/>
+           
             {
                 validGroup == 0 ? ( //not loaded
                     <div style = {{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
@@ -119,24 +144,50 @@ export default function InviteMembers() {
                    ) : ( //valid
                     !hasPerms ? ( // not creator
                         <>
-                        <h1 className="text-center font-bold text-3xl">You are not the creator.</h1>
+                        <Head>
+                            <title>Inviting members to {groupInfo.group_name}...</title>
+                            <link rel="icon" href="/favicon.ico" />
+                        </Head>
+                        <h1 className="text-center font-bold text-3xl">You lack invite permissions for {groupInfo.group_name}</h1>
+                        <p className = "text-center">go away lol</p>
                         </>
                     ) : ( //creator, main block
                         <>
+                        <Head>
+                            <title>Inviting members to {groupInfo.group_name}...</title>
+                            <link rel="icon" href="/favicon.ico" />
+                        </Head>
                         <h1 className="text-center font-bold text-3xl">Inviting members to {groupInfo.group_name}...</h1>
-                        {
-                            memberList != null && (
-                                memberList.map(member => (
-                                    <p>{member.full_name}</p>
-                                ))
-                            )
-                        }
+                                            <div className="mainInviteGrid">
+                                                <div></div>
+                                                <div className ="membersInviteBox">
+                                                    {
+                                                        memberList != null && (
+                                                            memberList.map(member => (
+                                                                <NamePicAdd 
+                                                                memberInfo = {member}
+                                                                addEmail = {addEmail}/>
+                                                            ))
+                                                            
+                                                        )
+                                                    }
+                                                    
+                                                </div>
+                                                <div className = "invitedMembersGrid">
+                                                    {
+                                                        invites.length > 0 && (
+                                                            invites.map((invite) => (
+                                                                <NamePicDel memberEmail = {invite}
+                                                                deleteEmail = {removeEmail}/>
+                                                            ))
+                                                        )
+                                                    }
+                                                </div>
+
+                                            </div>
+                       
                         </>
                         
-
-
-
-
 
 
 

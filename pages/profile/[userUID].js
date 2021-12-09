@@ -1,5 +1,6 @@
 import Header from "../../components/Header"
 import { useEffect, useState } from 'react'
+import Head from "next/dist/shared/lib/head"
 import { useRouter } from "next/dist/client/router"
 import Avatar from "../../components/Avatar"
 import { supabase } from '../../utils/supabaseClient'
@@ -141,36 +142,41 @@ export default function userProfile() {
                             ) : (
                                 
                                 <>
-                                {
-                                    userInfo != null && (
+                                            {
+                                                userInfo != null && (
                                                     <>
-                                                        <div style = {{display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly'}}>
-                                                            <div style = {{display: 'flex', flexDirection: 'column'}}>
-                                                            <Avatar
-                                                            url={avatar_url}
-                                                            size={150}
-                                                            onUpload={(url) => {
-                                                                setAvatar(url)
-                                                                updateProfile({ avatar_url: url })
-                                                            }
-                                                        }
-                                                        isProfile = {true}
-                                                        />
-                                                            </div>
-                                                            <div style = {{display: 'flex', flexDirection: 'column'}}>
-                                                            <h1 className="text-center font-bold text-3xl">This is the user {userInfo.full_name}</h1>
-                                                        <h1 className="text-center font-bold text-3xl">Email: {email}</h1>
-                                                        <h1 className="text-center font-bold text-3xl">Avatar: {avatar_url}</h1>
+                                                    <Head>
+                                                        <title>{userInfo.full_name}'s Profile</title>
+                                                        <link rel="icon" href="/favicon.ico" />
 
-                                                        <h1 className="text-center font-bold text-3xl">School: {school}</h1>
-                                                        <h1 className="text-center font-bold text-3xl">Join Date: {String(new Date(new Date(joinDate).getTime())).slice(4, 15)} {convertedTime(String(new Date(new Date(joinDate).getTime())).slice(16, 21)).convTime} {convertedTime(String(new Date(new Date(joinDate).getTime())).slice(16, 21)).isPM ? "PM" : "AM"} </h1>
+                                                    </Head>
+                                                        <div className = "profilePage">
+                                                            <div className = "profile_left">
+                                                                <Avatar
+                                                                    url={avatar_url}
+                                                                    size={150}
+                                                                    onUpload={(url) => {
+                                                                        setAvatar(url)
+                                                                        updateProfile({ avatar_url: url })
+                                                                    }
+                                                                    }
+                                                                    isProfile={userInfo.email == user.email}
+                                                                />
+                                                                <br/>
+                                                                <h1 className = "profile_item">Bio: <br/>{userInfo.bio}<br/></h1>
+                                                            </div>
+                                                            <div className = "profile_right">
+                                                                <h1 className="profile_item">Full Name/Username: <br/> {userInfo.full_name}<br/></h1>
+
+                                                                <h1 className="profile_item">School: <br/>{school}<br/></h1>
+                                                                <h1 className="profile_item">Join Date: <br/>{String(new Date(new Date(joinDate).getTime())).slice(4, 15)} {convertedTime(String(new Date(new Date(joinDate).getTime())).slice(16, 21)).convTime} {convertedTime(String(new Date(new Date(joinDate).getTime())).slice(16, 21)).isPM ? "PM" : "AM"}<br/> </h1>
                                                             </div>
                                                         </div>
-                                                        
+
 
                                                     </>
-                                    )
-                                }
+                                                )
+                                            }
                                 
                                 </>
                             )

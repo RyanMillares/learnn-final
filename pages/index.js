@@ -1,9 +1,7 @@
 import Head from 'next/head'
-import Welcome from '../components/Welcome'
 import Header from '../components/Header'
 import { supabase } from '../utils/supabaseClient'
 import { Auth } from "@supabase/ui"
-import Forums from '../components/Forums'
 
 import React, { useState } from "react";
 
@@ -43,17 +41,12 @@ export default function Home() {
       Move all this stuff somewhere else 
    
     </h1>
-    <button type = "button" onClick = {() => {
-      addTestUser()
-    }}>Click to add something lol</button>
-       {
+    
+       { //            <Forums user = {(user.email).split("@")[0]}/>
+
         user ? (<div>
           <h1 className = "text-center font-bold">Welcome {(user.email).split("@")[0]}</h1>
          
-          
-            <Forums 
-            user = {(user.email).split("@")[0]}/>
-          
           
           <button className = "text-purple-800" onClick = {async () => {
               let {error} = await supabase.auth.signOut()
@@ -98,17 +91,6 @@ export default function Home() {
 
     </main>
 
-
-
-   
-
-
-
-
-
-
-    
     </>
-    
   )
 }

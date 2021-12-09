@@ -23,7 +23,6 @@ export default function Avatar({ url, size, onUpload, isProfile }) {
     }
   }
 
-  console.log(avatarUrl)
   async function uploadAvatar(event) {
     try {
       setUploading(true)
