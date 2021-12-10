@@ -5,6 +5,7 @@ import { supabase } from "../../../utils/supabaseClient";
 import NamePicAdd from "../../../components/NamePicAdd";
 import NameAndPic from "../../../components/NameAndPic";
 import NamePicDel from "../../../components/NamePicDel";
+import InvitedMembers from "../../../components/InvitedMembers";
 import Head from "next/dist/shared/lib/head";
 
 export default function InviteMembers() {
@@ -25,6 +26,7 @@ export default function InviteMembers() {
     const [invites, setInvites] = useState([])
 
     useEffect(() => {
+        lmao()
         if(validGroup == 0){
             if(!isNaN(groupId)) {
                 verifyGroup()
@@ -42,6 +44,8 @@ export default function InviteMembers() {
 
         }
         //console.log(typeof groupId)
+        console.log(invites)
+
                
     })
     
@@ -93,6 +97,7 @@ export default function InviteMembers() {
         const {data, error} = await supabase 
         .from("profiles")
         .select()
+        .match({schoolFixed: true, isPublic: true})
         if(error) {
             console.log(error)
         }
@@ -113,7 +118,7 @@ export default function InviteMembers() {
         lmao()
     }
     const removeEmail = async (email) => {
-        let tempArray = invites
+        let tempArray = [...invites]
         const index = tempArray.indexOf(email)
         if(index > -1) {
             tempArray.splice(index, 1)
@@ -126,7 +131,9 @@ export default function InviteMembers() {
     return (
         <div>
             <Header currPage = "groups"/>
-           
+            <button type = "button" onClick = {() => {
+                lmao()
+            }}>Click for invites list</button>
             {
                 validGroup == 0 ? ( //not loaded
                     <div style = {{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
@@ -173,30 +180,28 @@ export default function InviteMembers() {
                                                     }
                                                     
                                                 </div>
-                                                <div className = "invitedMembersGrid">
-                                                    {
-                                                        invites.length > 0 && (
-                                                            invites.map((invite) => (
-                                                                <NamePicDel memberEmail = {invite}
-                                                                deleteEmail = {removeEmail}/>
-                                                            ))
-                                                        )
-                                                    }
+                                                <div className = "gridWithBottom">
+                                                    <div style = {{textAlign: 'center' ,fontSize: '20px',backgroundColor: '#98ff98'}}>
+                                                        Selected Members
+                                                    </div>
+                                                    <div className = "invitedMembersGrid">
+                                                        <InvitedMembers
+                                                        invites = {invites}
+                                                        removeEmail = {removeEmail}/>
+                                                    </div>
+                                                    <div style = {{backgroundColor: '#98ff98' ,alignItems: 'center', alignContent: 'center'}}>
+                                                        <center><button type = "button" className = "bg-green-600 text-2xl text-white rounded px-3 py-1 hover:bg-green-500" onClick = {() => {
+
+                                                        }}>Send Invites</button></center>
+                                                            
+                                                    </div>
                                                 </div>
+                                                
 
                                             </div>
                        
                         </>
                         
-
-
-
-
-
-
-
-
-
 
 
 

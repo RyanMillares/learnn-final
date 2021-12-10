@@ -2,7 +2,7 @@ import NameAndPic from "./NameAndPic";
 import { supabase } from "../utils/supabaseClient";
 import { useState, useEfect, useEffect } from "react";
 
-export default function NamePicDel ({memberEmail, deleteEmail}) {
+export default function NamePicDel ({memberEmail, deleteEmail, isInvite}) {
     const [userInfo, setInfo] = useState(null)
 
     useEffect(() => {
@@ -30,8 +30,9 @@ export default function NamePicDel ({memberEmail, deleteEmail}) {
                 userInfo != null && (
                     <>
                     <NameAndPic userInfo = {userInfo}/>
-                    <button type = "button" className = "bg-red-600 text-2xl text-white rounded px-3 py-1 hover:bg-red-500" onClick = {() => {
+                    <button type = "button" style = {{display: isInvite ? "hidden" : ""}} className = "bg-red-600 text-2xl text-white rounded px-3 py-1 hover:bg-red-500" onClick = {() => {
                         deleteEmail(memberEmail)
+                       
                     }}>X</button>
                     </>
                 )

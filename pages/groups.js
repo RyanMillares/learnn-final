@@ -113,7 +113,7 @@ export default function groups () {
                 //create group mode
                 createMode && (
                     <div style={{ alignContent: 'center', overflow: 'hidden' }}>
-                        <div class="input-focused">
+                        <div className ="input-focused" id = "groupForm">
                             <form>
                             <h1 className = "text-center font-bold">Create New Group</h1>
                                 <h2>Group Name: </h2><input type = "text" id = "groupname" style = {{width: '70vw', maxWidth: '100%'}} placeholder = "Enter group name" value = {groupName} className = "border-2 border-blue-400 rounded px-3 py-2 " onChange = {(e) => {if(e.target.value.length < 32) setName(e.target.value)}}/>
