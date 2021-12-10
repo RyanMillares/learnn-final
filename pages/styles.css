@@ -368,7 +368,6 @@ h1 #listItem {
     background-color: white;
     border-style: solid;
     border-color: darkblue;
-    
     border-width: 5px;
     border-radius: 10px;
     padding-left: 5px;
@@ -454,7 +453,6 @@ h1 #listItem {
     overflow-y: auto;
     flex-direction: column;
     justify-content: flex-start;
-    
     
 }
 .gridWithBottom {

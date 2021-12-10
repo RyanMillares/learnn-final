@@ -24,6 +24,7 @@ export default function InviteMembers() {
     const [memberList, setMembers] = useState(null)
     const [groupInfo, setInfo] = useState({})
     const [invites, setInvites] = useState([])
+    const [confirm, setConfirm] = useState(false)
 
     useEffect(() => {
         lmao()
@@ -131,6 +132,16 @@ export default function InviteMembers() {
     return (
         <div>
             <Header currPage = "groups"/>
+            {
+                confirm && (
+                    <div style={{ alignContent: 'center', overflow: 'hidden' }}>
+                    <div className ="input-focused" id = "groupForm">
+                        
+                       
+                    </div>
+                </div>
+                )
+            }
             <button type = "button" onClick = {() => {
                 lmao()
             }}>Click for invites list</button>
