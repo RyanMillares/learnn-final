@@ -3,7 +3,7 @@ import Head from "next/dist/shared/lib/head"
 import Header from "../../components/Header"
 import { useEffect, useState } from 'react'
 import Input from "../../components/Input"
-import Link from "next/Link"
+import Link from "next/link"
 import { useRouter } from "next/dist/client/router"
 import NameAndPic from "../../components/NameAndPic"
 

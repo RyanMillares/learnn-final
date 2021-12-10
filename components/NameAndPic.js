@@ -1,6 +1,6 @@
 import { supabase } from "../utils/supabaseClient"
 import { useEffect, useState } from "react"
-import Link from "next/Link"
+import Link from "next/link"
 
 
 export default function NameAndPic({userInfo}) {

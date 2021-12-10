@@ -1,4 +1,4 @@
-import Link from "next/Link";
+import Link from "next/link";
 import Header from "../components/Header";
 import { supabase } from "../utils/supabaseClient";
 import { useState, useEffect } from "react";

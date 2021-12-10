@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { supabase } from "../utils/supabaseClient"
-import Link from "next/Link"
+import Link from "next/link"
 
 export default function GroupPanel({name, id, description, img_url, members}) {
     const [memberList, setMembers] = useState("")
