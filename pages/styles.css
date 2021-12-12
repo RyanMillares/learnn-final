@@ -8,11 +8,11 @@ html {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    max-height: 102px;
+    max-height: 98px;
     background-color: #292161;
     /*border-bottom: 2px solid #77FF99; */
     margin-bottom: 5px;
-    min-width: 783px;
+    min-width: 902px;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
 
 
@@ -37,7 +37,7 @@ nav #left {
     padding-right: 2rem;
     border: 1px solid #3f8d33;
     border-bottom: none;
-    font-size: 23px;
+    font-size: 20px;
 }
 #navItemLeft:hover {
     background-color: #3f8d33;
@@ -49,6 +49,8 @@ nav #right {
 #navRight {
     /*background-color: pink; /* bro why you no work?? im literally using this nav #right and nothing here exists??*/
     margin-right: 5px;
+    display: flex;
+    flex-direction: row;
 
 }
 
@@ -69,7 +71,7 @@ nav #right {
     z-index: 1;
     overflow: hidden;
     padding: 5px 5px 5px 5px;
-    background-color:#1A1055;
+    background-color:#292161;
     width: 230px;
 
 }
@@ -154,12 +156,21 @@ nav #right {
     display: flex;
     flex-direction: row;
     font-family: Georgia, Times, "Times New Roman", serif;
+    border-radius: 10px;
     margin-left: 15px;
     margin-top: 5px;
     margin-bottom: 3px;
     font-weight: none;
     font-size: 2.5rem;
     cursor: pointer;
+
+
+
+}
+.logo:hover {
+    background-color: rgb(164, 217, 250);
+    color: black;
+    transition: background-color 250ms, color 250ms;
 
 
 
@@ -491,4 +502,25 @@ h1 #listItem {
     padding-bottom: 1px;
     padding-left: 2px;
     padding-right: 2px;
+}
+.message_grid {
+    display: grid;
+    grid-template-columns: 3fr 5fr;
+    height: 70vh;
+    
+
+}
+.message_container {
+    background-color: lightgreen;
+    overflow-y: auto;
+    padding: 2px;
+}
+.msgItem {
+    border: 1px solid white;
+}
+.msgItem:hover{
+
+}
+.message_body {
+    background-color: lightcyan;
 }

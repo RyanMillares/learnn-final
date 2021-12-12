@@ -24,6 +24,7 @@ export default function InviteMembers() {
     const [memberList, setMembers] = useState(null)
     const [groupInfo, setInfo] = useState({})
     const [invites, setInvites] = useState([])
+    const [invMsg, setMsg] = useState("")
     const [confirm, setConfirm] = useState(false)
 
     useEffect(() => {
@@ -89,7 +90,7 @@ export default function InviteMembers() {
             console.log(error)
         }
         else {
-            setUsers(data[0])
+            setUsers(data[0].accepted_members)
             console.log(data[0].accepted_members)
         }
         
@@ -107,6 +108,15 @@ export default function InviteMembers() {
             console.log(data)
         }
         
+    }
+    const sendInvites = () => {
+
+    }
+    const sendInvite = async (email) => {
+        const {data, error} = await supabase 
+        .from("pmessages")
+
+
     }
     const lmao = () => {
         console.log(invites)
@@ -136,7 +146,6 @@ export default function InviteMembers() {
                 confirm && (
                     <div style={{ alignContent: 'center', overflow: 'hidden' }}>
                     <div className ="input-focused" id = "groupForm">
-                        
                        
                     </div>
                 </div>
@@ -175,6 +184,27 @@ export default function InviteMembers() {
                             <title>Inviting members to {groupInfo.group_name}...</title>
                             <link rel="icon" href="/favicon.ico" />
                         </Head>
+                                            {
+                                                confirm && (
+                                                    <div style={{ alignContent: 'center', overflow: 'hidden' }}>
+                                                        <div className="input-focused-invites">
+                                                            <form>
+                                                                <h1 className="text-center font-bold">Create New Group</h1>
+                                                                <h2>Group Description: </h2><textarea type="text" id="groupdesc" style={{ width: '70vw', maxWidth: '100%', marginBottom: '5px' }} placeholder="Enter group description" value={invMsg} className="border-2 border-blue-400 rounded px-3 py-2 " onChange={(e) => setMsg(e.target.value)} />
+                                                                <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+                                                                    <button type="cancel" className="bg-red-600 rounded px-12 py-2 hover:bg-red-500" onClick={() => {
+                                                                        setConfirm(false)
+                                                                    }}>Cancel</button>
+                                                                    <button type="button" className="bg-green-500 rounded px-12 py-2 hover:bg-green-400" onClick={() => {
+                                                                        createGroup()
+                                                                    }}>Submit</button>
+                                                                </div>
+                                                            </form>
+
+                                                        </div>
+                                                    </div>
+                                                )
+                                            }
                         <h1 className="text-center font-bold text-3xl">Inviting members to {groupInfo.group_name}...</h1>
                                             <div className="mainInviteGrid">
                                                 <div></div>
@@ -202,7 +232,7 @@ export default function InviteMembers() {
                                                     </div>
                                                     <div style = {{backgroundColor: '#98ff98' ,alignItems: 'center', alignContent: 'center'}}>
                                                         <center><button type = "button" className = "bg-green-600 text-2xl text-white rounded px-3 py-1 hover:bg-green-500" onClick = {() => {
-
+                                                            setConfirm(true)
                                                         }}>Send Invites</button></center>
                                                             
                                                     </div>

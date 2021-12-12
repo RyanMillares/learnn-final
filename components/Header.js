@@ -10,6 +10,7 @@ export default function Header({currPage}) {
     const user = supabase.auth.user()
     const [userInfo, setInfo] = useState(null)
     const [collegeName, setCollege] = useState(null)
+    const [unreadNum, setUnread] = useState(null)
     const router = useRouter()
     let ranOnce = false
     useEffect(() => {
@@ -19,6 +20,12 @@ export default function Header({currPage}) {
             fetchUser()
         }
         else if (userInfo != null) {
+            if(unreadNum == null) {
+                fetchUnread()
+
+            }
+            
+            
             if (!userInfo.schoolFixed) {
                 if (collegeName == null) {
                     fetchSchool()
@@ -37,10 +44,26 @@ export default function Header({currPage}) {
                 //do nothing, all is well
             }
         }
+        console.log(unreadNum)
         
         
     })
+    const fetchUnread = async () => {
+        const { data, count, error} = await supabase
+        .from("pmessages")
+        .select('*', {count: 'exact', head: true})
+        .match({receiver: user.email, hasRead: false})
+        //.match({receiver: userInfo.email, hasRead: false})
+        if(error) {
+            console.log(error)
+        }
+        else {
+            setUnread(count)
 
+        }
+        
+
+    }
     const fetchUser = async () => {
         const {data, error} = await supabase 
         .from("profiles")
@@ -107,14 +130,22 @@ export default function Header({currPage}) {
             </Link>
             <Link href="/groups" className="link"><a id = "navItemLeft" style = {{marginBottom: '0px', marginTop: 'auto', marginLeft: '5vw', borderRadius: '15px 0px 0px 0px', borderRight: 'none', backgroundColor: (currPage == "groups" ? '#3f8d33' : "")}}>Groups</a></Link>
             <Link href="/groups/forums" className="link"><a id = "navItemLeft"   style = {{marginBottom: '0px', marginTop: 'auto',  borderRight: 'none',  borderLeft: 'none', backgroundColor: (currPage == "forums" ? '#3f8d33' : "")}}>Forums</a></Link>
-            <Link href="/messages" className="link"><a id = "navItemLeft"   style = {{marginBottom: '0px', marginTop: 'auto',  borderRight: 'none',  borderLeft: 'none', backgroundColor: (currPage == "messages" ? '#3f8d33' : "")}}>Messages</a></Link>
+            <Link href="/messages" className="link"><a id = "navItemLeft"   style = {{marginBottom: '0px', marginTop: 'auto',  borderRight: 'none',  borderLeft: 'none', backgroundColor: (currPage == "messages" ? '#3f8d33' : "")}}>
+                Messages&nbsp;&nbsp;
+                {(unreadNum != null && unreadNum != NaN) && (
+                    <a style = {{fontWeight: 'bold', marginTop: '0px', backgroundColor: 'red', color: 'white', fontSize: '15px', borderRadius: '5px', padding: '1px 5px 1px 5px'}}>
+                        {unreadNum}
+                        </a>
+                )}
+                </a>
+                </Link>
 
             <a id = "navItemLeft" href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ" style = {{marginBottom: '0px', marginTop: 'auto',  borderRadius: '0px 15px 0px 0px',  borderLeft: 'none'}}>Free Offers</a>
             
             
             </nav>
             <div id = "navRight">
-            
+                
 
                 <div className = "dropdown dropdown-6">
                 <div id = "navItemRight" onClick = {() => {

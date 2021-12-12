@@ -9,7 +9,7 @@ export default function InvitedMembers({invites, removeEmail}) {
                 invites.map((invite) => (
                     <NamePicDel memberEmail = {invite}
                     deleteEmail = {removeEmail}
-                    isInvite = {false}
+                    isInvite = {true}
                     key = {invite}
                />
                 ))

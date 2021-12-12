@@ -30,7 +30,7 @@ export default function NamePicDel ({memberEmail, deleteEmail, isInvite}) {
                 userInfo != null && (
                     <>
                     <NameAndPic userInfo = {userInfo}/>
-                    <button type = "button" style = {{display: isInvite ? "hidden" : ""}} className = "bg-red-600 text-2xl text-white rounded px-3 py-1 hover:bg-red-500" onClick = {() => {
+                    <button type = "button" style = {{display: isInvite ? "visible" : "none"}} className = "bg-red-600 text-2xl text-white rounded px-3 py-1 hover:bg-red-500" onClick = {() => {
                         deleteEmail(memberEmail)
                        
                     }}>X</button>
