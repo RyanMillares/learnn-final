@@ -132,7 +132,7 @@ export default function Header({currPage}) {
             <Link href="/groups/forums" className="link"><a id = "navItemLeft"   style = {{marginBottom: '0px', marginTop: 'auto',  borderRight: 'none',  borderLeft: 'none', backgroundColor: (currPage == "forums" ? '#3f8d33' : "")}}>Forums</a></Link>
             <Link href="/messages" className="link"><a id = "navItemLeft"   style = {{marginBottom: '0px', marginTop: 'auto',  borderRight: 'none',  borderLeft: 'none', backgroundColor: (currPage == "messages" ? '#3f8d33' : "")}}>
                 Messages&nbsp;&nbsp;
-                {(unreadNum != null && unreadNum != NaN) && (
+                {((unreadNum != null && unreadNum != NaN) && unreadNum > 0) && (
                     <a style = {{fontWeight: 'bold', marginTop: '0px', backgroundColor: 'red', color: 'white', fontSize: '15px', borderRadius: '5px', padding: '1px 5px 1px 5px'}}>
                         {unreadNum}
                         </a>

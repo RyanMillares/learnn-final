@@ -379,7 +379,7 @@ h1 #listItem {
     background-color: white;
     border-style: solid;
     border-color: darkblue;
-    border-width: 5px;
+    border-width: 3px;
     border-radius: 10px;
     padding-left: 5px;
     padding-right: 5px;
@@ -459,7 +459,7 @@ h1 #listItem {
 }
 .invitedMembersGrid {
     display: flex;
-    background-color: red;
+    background-color: #AAEEFF;
     max-height: 56vh;
     overflow-y: auto;
     flex-direction: column;

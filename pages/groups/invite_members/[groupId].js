@@ -110,11 +110,58 @@ export default function InviteMembers() {
         
     }
     const sendInvites = () => {
+        invites.map( invitee => (
+            sendInvite(invitee)
+        ))
+        updateGroup()
+        router.push("/groups")
+        
+        
+    }
+    const updateGroup = async () => {
+        let addedInvites = groupInfo.invited_members + " " + (invites.filter(invite1 => !groupInfo.invited_members.includes(invite1))).filter(invite2 => !groupInfo.accepted_members.includes(invite2)).join(" ")
+        const { data, error } = await supabase
+            .from('groupchats')
+            .update({ invited_members: addedInvites })
+            .eq("group_id", groupId)
+
+        if(error) {
+            console.log(error)
+        }
 
     }
     const sendInvite = async (email) => {
-        const {data, error} = await supabase 
-        .from("pmessages")
+        if(!groupInfo.invited_members.includes(email)) {
+            if(!groupInfo.accepted_members.includes(email)) {
+                const {data, error} = await supabase 
+                .from("pmessages")
+                .insert([
+                    {sender: user.email, 
+                        receiver: email, 
+                        header: ('You are invited to ' + groupInfo.group_name), 
+                        content: invMsg, 
+                        date_sent: new Date().getTime(),
+                        isInvite: true,
+                        groupId: groupInfo.groupId,
+        
+                    },
+                ])
+                
+                if(error) {
+                    console.log(error)
+                }
+            }
+            else {
+                console.log(email + " is already a member of the group")
+
+            }
+            
+        }
+        else {
+            console.log(email + " is already invited")
+
+        }
+        
 
 
     }
@@ -189,14 +236,16 @@ export default function InviteMembers() {
                                                     <div style={{ alignContent: 'center', overflow: 'hidden' }}>
                                                         <div className="input-focused-invites">
                                                             <form>
-                                                                <h1 className="text-center font-bold">Create New Group</h1>
-                                                                <h2>Group Description: </h2><textarea type="text" id="groupdesc" style={{ width: '70vw', maxWidth: '100%', marginBottom: '5px' }} placeholder="Enter group description" value={invMsg} className="border-2 border-blue-400 rounded px-3 py-2 " onChange={(e) => setMsg(e.target.value)} />
+                                                                <h1 className="text-center text-2xl font-bold">Invite Confirmation</h1><br/>
+
+                                                                <h1 className="text-left font-bold">Sending invites to {invites.length} users to {groupInfo.group_name} </h1>
+                                                                <h2>Add a message (optional): </h2><textarea type="text" id="groupdesc" style={{ width: '70vw', maxWidth: '100%', marginBottom: '5px' }} placeholder="Enter invite message" value={invMsg} className="border-2 border-blue-400 rounded px-3 py-2 " onChange={(e) => setMsg(e.target.value)} />
                                                                 <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
                                                                     <button type="cancel" className="bg-red-600 rounded px-12 py-2 hover:bg-red-500" onClick={() => {
                                                                         setConfirm(false)
                                                                     }}>Cancel</button>
                                                                     <button type="button" className="bg-green-500 rounded px-12 py-2 hover:bg-green-400" onClick={() => {
-                                                                        createGroup()
+                                                                        sendInvites()
                                                                     }}>Submit</button>
                                                                 </div>
                                                             </form>
@@ -230,9 +279,15 @@ export default function InviteMembers() {
                                                         invites = {invites}
                                                         removeEmail = {removeEmail}/>
                                                     </div>
-                                                    <div style = {{backgroundColor: '#98ff98' ,alignItems: 'center', alignContent: 'center'}}>
-                                                        <center><button type = "button" className = "bg-green-600 text-2xl text-white rounded px-3 py-1 hover:bg-green-500" onClick = {() => {
-                                                            setConfirm(true)
+                                                    <div style = {{backgroundColor: '#98ff98' ,alignItems: 'center', alignContent: 'center', paddingTop: '5px'}}>
+                                                        <center><button type = "button" style = {{fontSize: '18px'}} className = "bg-green-600 text-white rounded px-3 py-1 hover:bg-green-500" onClick = {() => {
+                                                            if(invites.length > 0) {
+                                                                setConfirm(true)
+
+                                                            }
+                                                            else {
+                                                                alert("You have not selected any users to invite yet.")
+                                                            }
                                                         }}>Send Invites</button></center>
                                                             
                                                     </div>

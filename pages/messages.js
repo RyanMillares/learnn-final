@@ -2,7 +2,9 @@ import { supabase } from "../utils/supabaseClient";
 import { useRouter } from "next/dist/client/router";
 import { useState, useEffect } from "react";
 import Header from "../components/Header";
+import Head from "next/dist/shared/lib/head";
 import NamePicDel from "../components/NamePicDel";
+import MessageBody from "../components/MessageBody";
 
 function convertedDate(date_string) {
 
@@ -78,6 +80,11 @@ export default function messages() {
     return (
         <>
             <Header currPage = "messages"/>
+            <Head>
+                <title>Messages</title>
+                <link rel="icon" href="/favicon.ico" />
+
+            </Head>
             <button type = "button" onClick = {() => {
                 router.push("/messages")
             }}>Refresh test</button>
@@ -91,7 +98,9 @@ export default function messages() {
 
 
                             messages.map(msg => (
-                                <div className="msgItem">
+                                <div className="msgItem" style = {{cursor: 'pointer'}}onClick = {() => {
+                                    setMsg(msg)
+                                }}>
                                     <NamePicDel memberEmail = {msg.sender} isInvite = {false}/>
                                     {msg.header}
                                 </div>
@@ -103,7 +112,13 @@ export default function messages() {
                 }
                 </div>
                 <div className="message_body">
-                    teehee
+                    {
+                        currMsg != null && (
+                            <MessageBody
+                            message = {currMsg}
+                            />
+                        )
+                    }
                     
                 </div>
             </div>
