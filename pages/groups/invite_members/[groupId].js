@@ -246,7 +246,7 @@ export default function InviteMembers() {
                                                                     }}>Cancel</button>
                                                                     <button type="button" className="bg-green-500 rounded px-12 py-2 hover:bg-green-400" onClick={() => {
                                                                         sendInvites()
-                                                                    }}>Submit</button>
+                                                                    }}>Confirm</button>
                                                                 </div>
                                                             </form>
 

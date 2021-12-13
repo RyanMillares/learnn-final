@@ -100,7 +100,7 @@ export default function MessageBody({message}) {
                                 <button type = "button" className = {message.hasDecided ? "bg-gray-600 text-gray-300 rounded px-3 py-1 " : "bg-green-600 text-white rounded px-3 py-1 hover:bg-green-500"} onClick = {() => {
                                     if(!message.hasDecided) {
                                         acceptInvite()
-                                        alert("Successfully joined" + message.header.slice(message.header.indexOf(":") + 1) + "!")
+                                        alert("Successfully joined" + message.header.slice(message.header.indexOf(":") + 1) + "!\n\nIt may take a few additional seconds for this to be processed. If your new group does not show up in your list immediately, refresh the page after a few seconds.")
                                         router.push("/groups")
                                     }
                                     else {
