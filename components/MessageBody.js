@@ -60,7 +60,7 @@ export default function MessageBody({message}) {
             invArray.splice(invIndex, 1)
 
         }
-        let newInvited = !invArray[0].trim().length ? null : invArray.join(" ")
+        let newInvited = invArray.length > 0 ? invArray.join(" ") : ""
         const {data, error} = await supabase
         .from("groupchats")
         .update({accepted_members: newAccepted, invited_members: newInvited})
