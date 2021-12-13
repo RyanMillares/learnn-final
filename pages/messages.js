@@ -46,7 +46,6 @@ export default function messages() {
     
 
     useEffect(() => {
-        console.log("test")
         if(user == null) {
            fetchUser()
            
@@ -131,6 +130,7 @@ export default function messages() {
                         currMsg != null && (
                             <MessageBody
                             message = {currMsg}
+                            key = {currMsg}
                             />
                         )
                     }

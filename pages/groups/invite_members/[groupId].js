@@ -119,7 +119,7 @@ export default function InviteMembers() {
         
     }
     const updateGroup = async () => {
-        let addedInvites = groupInfo.invited_members + " " + (invites.filter(invite1 => !groupInfo.invited_members.includes(invite1))).filter(invite2 => !groupInfo.accepted_members.includes(invite2)).join(" ")
+        let addedInvites = groupInfo.invited_members + (groupInfo.invited_members != null ? " " : "") + (invites.filter(invite1 => !groupInfo.invited_members.includes(invite1))).filter(invite2 => !groupInfo.accepted_members.includes(invite2)).join(" ")
         const { data, error } = await supabase
             .from('groupchats')
             .update({ invited_members: addedInvites })
