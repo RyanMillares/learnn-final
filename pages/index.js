@@ -57,7 +57,7 @@ export default function Home() {
               Logout
             </button>
         </div>) : (
-          <div className = "bg-white">
+          <div className = "login">
           <Auth supabaseClient = {supabase} socialLayout = "horizontal" socialButtonSize = "xlarge" />
         </div>
         )

@@ -90,7 +90,7 @@ export default function MessageBody({message}) {
             <a style = {{float: 'right'}}>Sent:<br/> {String(new Date(new Date(message.date_sent).getTime())).slice(4, 15)} {convertedTime(String(new Date(new Date(message.date_sent).getTime())).slice(16, 21)).convTime} {convertedTime(String(new Date(new Date(message.date_sent).getTime())).slice(16, 21)).isPM ? "PM" : "AM"}</a>
 
             From: <NamePicDel memberEmail = {message.sender} isInvite = {false} key = {message.sender}/>
-            <p>{message.isInvite ? "\"" : ""}{message.content}{message.isInvite ? "\"" : ""}</p><br/><br/>
+            <p style = {{marginTop: '30px'}}>{message.isInvite ? "\"" : ""}{message.content}{message.isInvite ? "\"" : ""}</p><br/>
             {
                 message.isInvite && (
                     <>

@@ -21,7 +21,7 @@ function convertedTime(time_string) {
 }
 
 
-export default function MessagePreview({msg, msgSetter}) {
+export default function MessagePreview({msg, msgSetter, currMsgId}) {
 
     const [hasRead, setRead] = useState(msg.hasRead)
 
@@ -38,7 +38,7 @@ export default function MessagePreview({msg, msgSetter}) {
         }
     }
     return (
-        <div className="msgItem"  style = {{cursor: 'pointer', borderWidth: hasRead ? '' : '3px', boxShadow: hasRead ? '' : '0px 3px 5px rgba(0, 0, 0, 0.5)'}} onClick = {() => {
+        <div className="msgItem"  style = {{cursor: 'pointer', borderWidth: hasRead ? '' : '3px', boxShadow: hasRead ? '' : '2px 4px 6px rgba(0, 0, 0, 0.5)', backgroundColor: currMsgId == msg.pmessage_id ? 'rgb(142, 218, 142)' : ''}} onClick = {() => {
             msgSetter(msg)
             if(!msg.hasRead) {
                 readMsg()

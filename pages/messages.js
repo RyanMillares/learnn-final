@@ -103,9 +103,7 @@ export default function messages() {
             <button type = "button" onClick = {() => {
                 router.push("/messages")
             }}>Refresh test</button>
-            <button type="button" onClick={() => {
-                        console.log(messages)
-                    }}>click for msgs</button>
+            
             <div className="message_grid">
                 <div className="message_container">
                 {
@@ -116,6 +114,7 @@ export default function messages() {
                                 <MessagePreview
                                 msg = {msg}
                                 msgSetter = {setMsg}
+                                currMsgId = {currMsg != null ? currMsg.pmessage_id : ""}
                                 />
                             ))
 
