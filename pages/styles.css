@@ -524,3 +524,9 @@ h1 #listItem {
 .message_body {
     background-color: lightcyan;
 }
+.messageBody {
+    margin-left: 5vw;
+    margin-right: 5vw;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+}

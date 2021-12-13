@@ -14,7 +14,19 @@ function convertedDate(date_string) {
     return convDate
 
 }
+function compare(a, b) {
 
+    const bandA = a.date_sent;
+    const bandB = b.date_sent;
+
+    let comparison = 0;
+    if (bandA < bandB) {
+        comparison = 1;
+    } else if (bandA > bandB) {
+        comparison = -1;
+    }
+    return comparison;
+}
 function convertedTime(time_string) {
     let currHour = parseInt(time_string.slice(0, 2), 10)
     let isPM = (currHour > 12)
@@ -69,6 +81,9 @@ export default function messages() {
         .from("pmessages")
         .select()
         .eq("receiver", user.email)
+        if (data != null) {
+            data.sort(compare)
+        }
         if(error) {
             console.log(error)
         }

@@ -138,11 +138,11 @@ export default function InviteMembers() {
                 .insert([
                     {sender: user.email, 
                         receiver: email, 
-                        header: ('You are invited to ' + groupInfo.group_name), 
+                        header: ('You are invited to: ' + groupInfo.group_name), 
                         content: invMsg, 
                         date_sent: new Date().getTime(),
                         isInvite: true,
-                        groupId: groupInfo.groupId,
+                        groupId: groupId,
         
                     },
                 ])
@@ -263,8 +263,11 @@ export default function InviteMembers() {
                                                             memberList.map(member => (
                                                                 <NamePicAdd 
                                                                 memberInfo = {member}
-                                                                addEmail = {addEmail}/>
+                                                                addEmail = {addEmail}
+                                                                key = {member}
+                                                                />
                                                             ))
+
                                                             
                                                         )
                                                     }
