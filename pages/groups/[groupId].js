@@ -303,7 +303,7 @@ export default function groupchat() {
 
 
                                                 </div>
-                                                <div style={{ display: 'flex', flexDirection: 'row' }}>
+                                                <div className = "forumOrg">
                                                     <div id="forumPage" class="forumPage">
 
                                                         <div id="forums" className="forums">

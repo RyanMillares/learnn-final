@@ -5,6 +5,7 @@ import Header from "../components/Header";
 import Head from "next/dist/shared/lib/head";
 import NamePicDel from "../components/NamePicDel";
 import MessageBody from "../components/MessageBody";
+import MessagePreview from "../components/MessagePreview";
 
 function convertedDate(date_string) {
 
@@ -46,20 +47,20 @@ export default function messages() {
     
 
     useEffect(() => {
-        if(user == null) {
-           fetchUser()
-           
-        }
-        else if(userInfo != null) {
-            console.log("ran")
+        if (user != null) {
+            fetchUser()
+            if (userInfo != null) {
+                console.log("ran")
 
-            
-        }
-        else {
-            if(messages == null) {
-                fetchMessages()
+
+            }
+            else {
+                if (messages == null) {
+                    fetchMessages()
+                }
             }
         }
+        
     })
     const fetchUser = async () => {
         const {data, error} = await supabase 
@@ -112,12 +113,10 @@ export default function messages() {
 
 
                             messages.map(msg => (
-                                <div className="msgItem" style = {{cursor: 'pointer'}}onClick = {() => {
-                                    setMsg(msg)
-                                }}>
-                                    <NamePicDel memberEmail = {msg.sender} isInvite = {false}/>
-                                    {msg.header}
-                                </div>
+                                <MessagePreview
+                                msg = {msg}
+                                msgSetter = {setMsg}
+                                />
                             ))
 
 
