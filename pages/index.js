@@ -36,7 +36,7 @@ export default function Home() {
     }
     
     <main>
-    <h1 className = "text-center font-bold text-4xl">
+    <h1 className = "text-center font-bold text-4xl" style = {{alignContent: 'center', alignItems: 'center'}}>
       If guest: display list of potential features and give link to a login page. If user, display recent activity of some sort (dashboard)
       Move all this stuff somewhere else 
    

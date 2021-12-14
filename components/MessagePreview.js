@@ -38,7 +38,7 @@ export default function MessagePreview({msg, msgSetter, currMsgId}) {
         }
     }
     return (
-        <div className="msgItem"  style = {{cursor: 'pointer', borderWidth: hasRead ? '' : '3px', boxShadow: hasRead ? '' : '2px 4px 6px rgba(0, 0, 0, 0.5)', backgroundColor: currMsgId == msg.pmessage_id ? 'rgb(142, 218, 142)' : ''}} onClick = {() => {
+        <div className="msgItem"  style = {{cursor: 'pointer', borderWidth: hasRead ? '' : '3px', boxShadow: hasRead ? '' : '2px 4px 6px rgba(0, 0, 0, 0.5)', backgroundColor: currMsgId == msg.pmessage_id ? 'rgb(150, 226, 150)' : ''}} onClick = {() => {
             msgSetter(msg)
             if(!msg.hasRead) {
                 readMsg()
