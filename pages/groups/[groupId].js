@@ -334,7 +334,7 @@ export default function groupchat() {
                                                         </div>
 
                                                     </div>
-                                                    <div style={{ width: '40vw', display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly' }}>
+                                                    <div className = "forumMembers">
                                                         {
                                                             <div className = "forum_accepted" style={{ display: 'flex', flexDirection: 'column' }}>
                                                                 <h1 className="text-left font-bold" style = {{fontSize: '20px', paddingBottom: '5px'}}>Accepted Members</h1>

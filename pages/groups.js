@@ -139,7 +139,7 @@ export default function groups () {
 
             
             
-            <button type = "submit"  style = {{marginLeft: '80vw'}} id = "test" className = "bg-green-600 rounded px-12 py-2 hover:bg-green-500" onClick = {
+            <button type = "submit"  style = {{marginLeft: '5vw', marginBottom: '3vh', marginTop: '3vh'}} id = "test" className = "bg-green-600 rounded px-12 py-2 hover:bg-green-500" onClick = {
                 () => {
                     setMode(!createMode)
                 }
