@@ -23,7 +23,7 @@ export default function Home() {
   }
   return (
     
-    <>
+    <body>
 
     <Head>
       <title>Learn'N Home</title>
@@ -94,6 +94,6 @@ export default function Home() {
 
     </main>
 
-    </>
+    </body>
   )
 }

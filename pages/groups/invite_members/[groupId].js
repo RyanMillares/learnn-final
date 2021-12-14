@@ -187,7 +187,7 @@ export default function InviteMembers() {
     
     
     return (
-        <div>
+        <body>
             <Header currPage = "groups"/>
             {
                 confirm && (
@@ -309,6 +309,6 @@ export default function InviteMembers() {
                 )
             }
             
-        </div>
+        </body>
     )
 }
