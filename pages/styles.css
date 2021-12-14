@@ -576,16 +576,24 @@ h1 #listItem {
     }
     .forumPage {
         width: 1080px;
-        height: 100%;
+        margin-left: 0;
+        min-height: 750px;
     }
     .forumOrg {
         flex-direction: column;
         justify-content: space-evenly;
-        height: 100%;
+        
         
     }
     .forumMembers {
         width: 100%;
+        margin-top: 10px;
+    }
+    .forum_accepted {
+        width: 500px;
+    }
+    .forum_invited {
+        width: 500px;
     }
  @media (max-width: 360px) {
     
