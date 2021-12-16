@@ -135,7 +135,7 @@ export default function groups () {
             
             <button type = "button" style = {{display: 'none'}} className = "bg-yellow-500 rounded px-12 py-2" onClick = {() => {
                 createGroup()
-            }} >Insert test group</button>
+            }}><a className = "responsive_text4">Insert test group</a></button>
 
             
             

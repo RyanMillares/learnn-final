@@ -45,12 +45,12 @@ export default function GroupPanel({name, id, description, img_url, members}) {
                 memberList.length > 1 && ( //read over responsive photo cards for CSS/HTML on card layout (photo goes on top)
                     <div class="card_groups">
                         <div>
-                            <Link href={"/groups/" + id}><div style = {{textAlign: 'center', fontWeight: 'bold', fontSize: '15px'}} >{name}</div></Link>
-                            <p>{description}</p> 
+                            <Link href={"/groups/" + id}><div className = "responsive_text2" style = {{textAlign: 'center', fontWeight: 'bold'}} >{name}</div></Link>
+                            <p className = "responsive_text4">{description}</p> 
 
                         </div>
 
-                        <div style = {{fontSize:'12px'}}>{memberList}</div>
+                        <div className = "responsive_text3">{memberList}</div>
 
                         </div>
 

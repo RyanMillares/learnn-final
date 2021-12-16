@@ -50,7 +50,7 @@ export default function messages() {
         if (user != null) {
             fetchUser()
             if (userInfo != null) {
-                console.log("ran")
+                //console.log("ran")
 
 
             }

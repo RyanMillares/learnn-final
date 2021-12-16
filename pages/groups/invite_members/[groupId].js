@@ -256,7 +256,7 @@ export default function InviteMembers() {
                                             }
                         <h1 className="text-center font-bold text-3xl">Inviting members to {groupInfo.group_name}...</h1>
                                             <div className="mainInviteGrid">
-                                                <div></div>
+                                               <div></div>
                                                 <div className ="membersInviteBox">
                                                     {
                                                         memberList != null && (
@@ -274,7 +274,7 @@ export default function InviteMembers() {
                                                     
                                                 </div>
                                                 <div className = "gridWithBottom">
-                                                    <div style = {{textAlign: 'center' ,fontSize: '20px',backgroundColor: '#98ff98'}}>
+                                                    <div className = "responsive_text" style = {{textAlign: 'center',backgroundColor: '#98ff98'}}>
                                                         Selected Members
                                                     </div>
                                                     <div className = "invitedMembersGrid">

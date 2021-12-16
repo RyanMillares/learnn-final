@@ -25,7 +25,7 @@ export default function NamePicDel ({memberEmail, deleteEmail, isInvite}) {
         
     }
     return (
-        <div className = "evenMoreGrid" style = {{maxWidth: '230px', maxHeight: '50px', minWidth: '230px', minHeight: '50px'}}>
+        <div className = "evenMoreGrid" style = {{maxWidth: '400px', maxHeight: '50px', minWidth: '230px', minHeight: '50px'}}>
             {
                 userInfo != null && (
                     <>

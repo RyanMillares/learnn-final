@@ -45,10 +45,10 @@ export default function MessagePreview({msg, msgSetter, currMsgId}) {
 
             }
         }}>
-            <a style = {{float: 'right', fontSize: '15px'}}>{String(new Date(new Date(msg.date_sent).getTime())).slice(4, 15)} {convertedTime(String(new Date(new Date(msg.date_sent).getTime())).slice(16, 21)).convTime} {convertedTime(String(new Date(new Date(msg.date_sent).getTime())).slice(16, 21)).isPM ? "PM" : "AM"}</a>
+            <a className = "responsive_text2" style = {{float: 'right'}}>{String(new Date(new Date(msg.date_sent).getTime())).slice(4, 15)} {convertedTime(String(new Date(new Date(msg.date_sent).getTime())).slice(16, 21)).convTime} {convertedTime(String(new Date(new Date(msg.date_sent).getTime())).slice(16, 21)).isPM ? "PM" : "AM"}</a>
 
             <NamePicDel memberEmail = {msg.sender} isInvite = {false}/>
-            <a style = {{fontWeight: hasRead ? '' : 'bold', }}>{msg.header}</a>
+            <a className = "responsive_text4" style = {{fontWeight: hasRead ? '' : 'bold', }}>{msg.header}</a>
         </div>
     )
 }
