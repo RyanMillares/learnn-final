@@ -94,6 +94,7 @@ export default function userProfile() {
         .eq("id", userId)
         if(error) {
             console.log(error)
+            router.push("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
         }
         else {
             if(data != null)
