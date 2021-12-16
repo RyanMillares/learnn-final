@@ -6,6 +6,19 @@ html {
 body {
     width: 100vw;
 }
+.responsive_text {
+    font-size: 20px;
+}
+.responsive_text2 {
+    font-size: 15px;
+}
+.responsive_text3 {
+    font-size: 12px;
+}
+.responsive_chatImg {
+    width: 50px; 
+    height: 50px; 
+}
 /* HEADER COMPONENT */
 .HeaderBar {
     color: white;
@@ -270,7 +283,7 @@ header {
 }
 .forumEnter {
     margin-left: 10vw;
-    margin-right: 15vw;
+    margin-right: 10vw;
 }
 .forumMembers {
     width: 40vw; 
@@ -321,6 +334,7 @@ header {
     padding-bottom: 3px;
     margin-bottom: 1px;
     overflow: hidden;
+    font-size: 14px;
     
 }
 textarea .editMsg {
@@ -342,6 +356,10 @@ textarea .editMsg {
     overflow: hidden;
     
 
+}
+.input_size {
+    width: 70%;
+    max-width: 70%;
 }
 .groupMemberItem {
     cursor: pointer;
@@ -441,6 +459,8 @@ h1 #listItem {
     min-height: 100%;
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 1fr;
+
 }
 /*.membersInviteGrid {
     margin: 0;
@@ -514,6 +534,10 @@ h1 #listItem {
     padding-bottom: 1px;
     padding-left: 2px;
     padding-right: 2px;
+    max-width: 230px;
+    max-height: 50px; 
+    min-width: 230px; 
+    min-height: 50px;
 }
 .message_grid {
     display: grid;
@@ -577,13 +601,20 @@ h1 #listItem {
     .forumPage {
         width: 1080px;
         margin-left: 0;
-        min-height: 750px;
+        min-height: 1080px;
     }
     .forumOrg {
         flex-direction: column;
         justify-content: space-evenly;
         
         
+    }
+    .forumEnter {
+        font-size: 4rem;
+    }
+    .input_size {
+        width: 70vw;
+        max-width: 70vw;
     }
     .forumMembers {
         width: 100%;
@@ -594,6 +625,44 @@ h1 #listItem {
     }
     .forum_invited {
         width: 500px;
+    }
+    .forumMessage {
+        font-size: 30px;
+    }
+    .mainInviteGrid {
+        display: grid;
+        grid-template-rows: 1fr 2fr 1fr;
+        grid-template-columns: 1fr;
+
+
+    }
+    .membersInviteBox {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: repeat(auto-fill, minmax(125px, 1fr));
+
+    }
+    .input_size {
+        max-width: 75%;
+        width:75%;
+        height: 20vh;
+        font-size: 3rem;
+    }
+    .evenMoreGrid {
+        min-width: 80%;
+        max-width: 80%;
+    }
+    .responsive_text {
+        font-size: 2.5rem;
+    }
+    .responsive_text2 {
+        font-size: 2rem;
+    }
+    .responsive_text3 {
+        font-size: 1.5rem;
+    }
+    .responsive_chatImg {
+        width: 100px;
+        height: 100px; 
     }
  @media (max-width: 360px) {
     

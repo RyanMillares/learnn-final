@@ -44,7 +44,7 @@ export default function Header({currPage}) {
                 //do nothing, all is well
             }
         }
-        console.log(unreadNum)
+        //console.log(unreadNum)
         
         
     })

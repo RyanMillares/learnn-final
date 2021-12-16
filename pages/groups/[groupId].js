@@ -291,7 +291,7 @@ export default function groupchat() {
                                                             </Head>
                                                 {
                                                     user != null && (
-                                                        <h1 className="text-center font-bold">Welcome {(user.email).split("@")[0]} to {groupInfo.group_name}</h1>
+                                                        <h1 className="text-center font-bold responsive_text">Welcome {(user.email).split("@")[0]} to {groupInfo.group_name}</h1>
                                                     )
                                                 }
                                                 <div class="forumEnter">
@@ -304,40 +304,47 @@ export default function groupchat() {
 
                                                 </div>
                                                 <div className = "forumOrg">
+                                                    <div style = {{display: 'flex',flexDirection: 'column'}}>
                                                     <div id="forumPage" class="forumPage">
 
-                                                        <div id="forums" className="forums">
-                                                            {
-                                                                forumTests.length > 0 && (
-                                                                    forumTests.map((forum, i) => (
+                                                                        <div id="forums" className="forums">
+                                                                            {
+                                                                                forumTests.length > 0 && (
+                                                                                    forumTests.map((forum, i) => (
 
-                                                                        (forum != null) && (
-                                                                            <ChatItem
-                                                                                sender={forum.sender}
-                                                                                date_sent={forum.date_sent}
-                                                                                message={forum.message}
-                                                                                msgId={forum.msg_id}
-                                                                                table="groupmsgs"
-                                                                                updater={fetchMessages}
-                                                                                isNew={i > 0 ? (forumTests[i].sender != forumTests[i - 1].sender || (forumTests[i].date_sent - forumTests[i - 1].date_sent > 3600000) && forumTests[i].sender == forumTests[i - 1].sender) : true
+                                                                                        (forum != null) && (
+                                                                                            <ChatItem
+                                                                                                sender={forum.sender}
+                                                                                                date_sent={forum.date_sent}
+                                                                                                message={forum.message}
+                                                                                                msgId={forum.msg_id}
+                                                                                                table="groupmsgs"
+                                                                                                updater={fetchMessages}
+                                                                                                isNew={i > 0 ? (forumTests[i].sender != forumTests[i - 1].sender || (forumTests[i].date_sent - forumTests[i - 1].date_sent > 3600000) && forumTests[i].sender == forumTests[i - 1].sender) : true
 
-                                                                                }
-                                                                                newDay={i > 0 ? String(new Date(forumTests[i].date_sent)).slice(8, 10) != String(new Date(forumTests[i - 1].date_sent)).slice(8, 10) : true} />
-                                                                        ))
-                                                                    )
+                                                                                                }
+                                                                                                newDay={i > 0 ? String(new Date(forumTests[i].date_sent)).slice(8, 10) != String(new Date(forumTests[i - 1].date_sent)).slice(8, 10) : true} />
+                                                                                        ))
+                                                                                    )
 
-                                                                )
-                                                                //forumTests.slice(0).reverse().map((forum) => (
+                                                                                )
+                                                                                //forumTests.slice(0).reverse().map((forum) => (
 
-                                                            }
+                                                                            }
+
+                                                                        </div>
+
+                                                                    </div>
+                                                        <div class="forumEnter">
+                                                            <Input handleSubmit={addMessage} buttonText="Send" />
 
                                                         </div>
-
                                                     </div>
+                                                    
                                                     <div className = "forumMembers">
                                                         {
                                                             <div className = "forum_accepted" style={{ display: 'flex', flexDirection: 'column' }}>
-                                                                <h1 className="text-left font-bold" style = {{fontSize: '20px', paddingBottom: '5px'}}>Accepted Members</h1>
+                                                                <h1 className="text-left font-bold responsive_text" style = {{paddingBottom: '5px'}}>Accepted Members</h1>
                                                                 {
                                                                     
                                                                     memberInfo != null && (
@@ -363,7 +370,7 @@ export default function groupchat() {
                                                             <div style={{ display: 'flex', flexDirection: 'column' }}>
                                                                 <div className = "forum_invited">
 
-                                                                <h1 className="text-left font-bold" style = {{fontSize: '20px', paddingBottom: '5px'}}>Invited Members</h1>
+                                                                <h1 className="text-left font-bold responsive_text" style = {{paddingBottom: '5px'}}>Invited Members</h1>
                                                                 {
                                                                     
                                                                     inviteInfo != null && (
@@ -388,10 +395,7 @@ export default function groupchat() {
                                                     </div>
                                                 </div>
 
-                                                <div class="forumEnter">
-                                                    <Input handleSubmit={addMessage} buttonText="Send" />
-
-                                                </div>
+                                               
                                             </>
                                         )
                                     }

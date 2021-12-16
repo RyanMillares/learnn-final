@@ -12,7 +12,7 @@ export default function Input ({ handleSubmit, buttonText }) {
     }
     return (
         <form onSubmit = {submitForm}>
-            <input type = "text" style = {{width: '70vw', maxWidth: '50vw'}} placeholder = "Enter message" value = {value} className = "border-2 border-blue-400 rounded px-3 py-2 " onChange = {(e) => { setValue(e.target.value)}}>
+            <input type = "text"  placeholder = "Enter message" value = {value} className = "border-2 border-blue-400 rounded px-3 py-2 input_size" onChange = {(e) => { setValue(e.target.value)}}>
 
             </input>
             <button type = "submit" className = "bg-green-500 rounded px-12 py-2">{buttonText}</button>

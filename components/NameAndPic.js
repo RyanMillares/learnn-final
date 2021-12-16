@@ -38,7 +38,7 @@ export default function NameAndPic({userInfo}) {
             <Link style = {{cursor: 'pointer'}}href={"/profile/" + userInfo.id}>
                 
                 
-                <h1 style= {{ cursor: 'pointer' }} className="text-left" style={{ fontSize: '15px' }}> <img src= {blob != null ? blob : "../images/default.jpg"} style={{marginBottom: '5px', width: '40px', height: '40px', borderRadius: '100%', overflow: 'hidden', display: 'inline',whiteSpace: 'nowrap', cursor: 'pointer'}} /> {userInfo.full_name}</h1>
+                <h1 style= {{ cursor: 'pointer' }} className="text-left responsive_text2" > <img src= {blob != null ? blob : "../images/default.jpg"} className = "responsive_chatImg" style={{marginBottom: '5px', borderRadius: '100%', overflow: 'hidden', display: 'inline',whiteSpace: 'nowrap', cursor: 'pointer'}} /> {userInfo.full_name}</h1>
                 
             </Link>
         </div>

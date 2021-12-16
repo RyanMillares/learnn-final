@@ -196,7 +196,7 @@ export default function ChatItem({ sender, date_sent, message, msgId, table, upd
             <div className = "forumItem" style = {{backgroundColor: editMode ? "#c6ecc6" : ""}}> 
                 {
                     (newDay) && (
-                        <h1 style = {{textAlign: 'center', fontStyle: 'italic', fontWeight: 'bold'}}> {formattedDate} </h1>
+                        <h1 className = "responsive_text2" style = {{textAlign: 'center', fontStyle: 'italic', fontWeight: 'bold'}}> {formattedDate} </h1>
                     )
                 }
             {
@@ -205,13 +205,13 @@ export default function ChatItem({ sender, date_sent, message, msgId, table, upd
                     <h1 style={{ textAlign: currUser.email == name ? 'right' : 'left' }}>
                         {
                             currUser.email != name && (
-                                <img src= {blob != null ? blob : "../images/default.jpg"} style={{ width: '50px', height: '50px', borderRadius: '100%', overflow: 'hidden', display: 'inline' }} />
+                                <img src= {blob != null ? blob : "../images/default.jpg"} className = "responsive_chatImg" style={{borderRadius: '100%', overflow: 'hidden', display: 'inline' }} />
                             )
                         }
 
                         {
                             currUser.email == name && (
-                                <i style={{ fontSize: '12px' }}>&nbsp;Sent&nbsp;{formattedDate} {finalTime.convTime} {
+                                <i className = "responsive_text3">&nbsp;Sent&nbsp;{formattedDate} {finalTime.convTime} {
                                     finalTime.isPM ? (
                                         "PM"
                                     ) : (
@@ -219,10 +219,14 @@ export default function ChatItem({ sender, date_sent, message, msgId, table, upd
                                     )
                                 }</i>
                             )
-                        } { userInfo != null && (userInfo.full_name)
+                        } { userInfo != null && (
+                            <a className = "responsive_text2">
+                                {userInfo.full_name}
+                            </a>
+                            )
                             } {
                             currUser.email != name && (
-                                <i style={{ fontSize: '12px' }}> Sent {formattedDate} {finalTime.convTime} {
+                                <i className = "responsive_text3"> Sent {formattedDate} {finalTime.convTime} {
                                     finalTime.isPM ? (
                                         "PM"
                                     ) : (
@@ -233,7 +237,7 @@ export default function ChatItem({ sender, date_sent, message, msgId, table, upd
                         }
                         {
                             currUser.email == name && ( //add function later to fetch this
-                                <img src={blob != null ? blob : "../images/default.jpg"} style={{ width: '50px', height: '50px', borderRadius: '100%', overflow: 'hidden', display: 'inline' }} />
+                                <img src={blob != null ? blob : "../images/default.jpg"} className = "responsive_chatImg" style={{borderRadius: '100%', overflow: 'hidden', display: 'inline' }} />
                             )
                         }
                     </h1>
@@ -312,7 +316,7 @@ export default function ChatItem({ sender, date_sent, message, msgId, table, upd
                         ) : (
                             <>
                             
-                            <div className = "forumMessage" style = {{fontSize: '14px', backgroundColor: currUser.email == name ? '#003377' : 'dimgray', color: currUser.email == name ? 'white' : 'white', cursor: currUser.email == name ? 'pointer' : ''}} onClick = {() => {
+                            <div className = "forumMessage" style = {{backgroundColor: currUser.email == name ? '#003377' : 'dimgray', color: currUser.email == name ? 'white' : 'white', cursor: currUser.email == name ? 'pointer' : ''}} onClick = {() => {
                                 if(!editMode) {
                                     setSettings(!msgSettings)
 
