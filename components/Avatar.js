@@ -58,8 +58,8 @@ export default function Avatar({ url, size, onUpload, isProfile }) {
         <img
           src={avatarUrl}
           alt="Avatar"
-          className="avatar image"
-          style={{ height: size, width: size, margin: 'auto', borderRadius: '100%' }}
+          className="avatar image responsive_chatImg2"
+          style={{ margin: 'auto', borderRadius: '100%' }}
         />
       ) : (
         <div className="avatar no-image" style={{ height: size, width: size }} />

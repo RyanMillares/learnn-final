@@ -128,9 +128,9 @@ export default function Header({currPage}) {
                 <h1>Learn'N</h1>
                 </div>
             </Link>
-            <Link href="/groups" className="link"><a id = "navItemLeft" style = {{marginBottom: '0px', marginTop: 'auto', marginLeft: '5vw', borderRadius: '15px 0px 0px 0px', borderRight: 'none', backgroundColor: (currPage == "groups" ? '#3f8d33' : "")}}>Groups</a></Link>
+            <Link href="/groups" className="link"><a id = "navItemLeft"  style = {{marginBottom: '0px', marginTop: 'auto', marginLeft: '5vw', borderRadius: '15px 0px 0px 0px', borderRight: 'none', backgroundColor: (currPage == "groups" ? '#3f8d33' : "")}}>Groups</a></Link>
             <Link href="/groups/forums" className="link"><a id = "navItemLeft"   style = {{marginBottom: '0px', marginTop: 'auto',  borderRight: 'none',  borderLeft: 'none', backgroundColor: (currPage == "forums" ? '#3f8d33' : "")}}>Forums</a></Link>
-            <Link href="/messages" className="link"><a id = "navItemLeft"   style = {{marginBottom: '0px', marginTop: 'auto',  borderRight: 'none',  borderLeft: 'none', backgroundColor: (currPage == "messages" ? '#3f8d33' : "")}}>
+            <Link href="/messages" className="link"><a id = "navItemLeft"   style = {{marginBottom: '0px', marginTop: 'auto',  borderRight: 'none',  borderLeft: 'none',borderRadius: '0px 15px 0px 0px', backgroundColor: (currPage == "messages" ? '#3f8d33' : "")}}>
                 Messages&nbsp;&nbsp;
                 {((unreadNum != null && unreadNum != NaN) && unreadNum > 0) && (
                     <a style = {{fontWeight: 'bold', marginTop: '0px', backgroundColor: 'red', color: 'white', fontSize: '15px', borderRadius: '5px', padding: '1px 5px 1px 5px'}}>
@@ -140,7 +140,7 @@ export default function Header({currPage}) {
                 </a>
                 </Link>
 
-            <a id = "navItemLeft" href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ" style = {{marginBottom: '0px', marginTop: 'auto',  borderRadius: '0px 15px 0px 0px',  borderLeft: 'none'}}>Free Offers</a>
+            <a id = "navItemLeft" href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ" style = {{marginBottom: '0px', marginTop: 'auto',  borderRadius: '0px 15px 0px 0px',  borderLeft: 'none', display: 'none'}}>Free Offers</a>
             
             
             </nav>
@@ -153,7 +153,7 @@ export default function Header({currPage}) {
                 }}>
                 {
                     (userInfo != null) && (
-                        <h1 style = {{marginRight: '15px'}}>{userInfo.full_name}</h1>
+                        <h1 className = "mobileAdjust" style = {{marginRight: '15px'}}>{userInfo.full_name}</h1>
                     )
                
                 }
