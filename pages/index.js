@@ -41,7 +41,7 @@ export default function Home() {
       
     <h1 className = "text-center font-bold text-4xl" style = {{alignContent: 'center', alignItems: 'center'}}>
       Welcome to <a style = {{color: 'teal'}}>Learn'N</a>
-      <p>This homepage is still in development...</p>
+      <p style = {{fontSize: '20px'}}>This homepage is still in development, go to Groups to create your first group!</p>
    
     </h1>
     
@@ -66,7 +66,11 @@ export default function Home() {
         </div>
         )
       }
-      <div class="wrapper">
+      
+      {
+        false && (
+          <>
+          <div class="wrapper">
       <div class="box one"></div>
       <div class="box two"></div>
       <div class="box three"></div>
@@ -92,6 +96,9 @@ export default function Home() {
         }}
       />
     </div>
+          </>
+        )
+      }
 
     </main>
 
