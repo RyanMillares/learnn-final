@@ -37,16 +37,17 @@ export default function Home() {
         <Header/>
     }
     
-    <main>
+    <main style = {{marginLeft: '5vw', marginRight: '5vw'}}>
       
     <h1 className = "text-center font-bold text-4xl" style = {{alignContent: 'center', alignItems: 'center'}}>
-      If guest: display list of potential features and give link to a login page. If user, display recent activity of some sort (dashboard)
-      Move all this stuff somewhere else 
+      Welcome to <a style = {{color: 'teal'}}>Learn'N</a>
+      <p>This homepage is still in development...</p>
    
     </h1>
     
+    
        { //            <Forums user = {(user.email).split("@")[0]}/>
-
+//If guest: display list of potential features and give link to a login page. If user, display recent activity of some sort (dashboard)Move all this stuff somewhere else 
         user ? (<div>
           <h1 className = "text-center font-bold">Welcome {(user.email).split("@")[0]}</h1>
          
