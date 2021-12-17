@@ -133,7 +133,7 @@ export default function Header({currPage}) {
             <Link href="/messages" className="link"><a id = "navItemLeft"   style = {{marginBottom: '0px', marginTop: 'auto',  borderRight: 'none',  borderLeft: 'none',borderRadius: '0px 15px 0px 0px', backgroundColor: (currPage == "messages" ? '#3f8d33' : "")}}>
                 Messages&nbsp;&nbsp;
                 {((unreadNum != null && unreadNum != NaN) && unreadNum > 0) && (
-                    <a style = {{fontWeight: 'bold', marginTop: '0px', backgroundColor: 'red', color: 'white', fontSize: '15px', borderRadius: '5px', padding: '1px 5px 1px 5px'}}>
+                    <a className = "responsive_text3" style = {{fontWeight: 'bold', marginTop: '0px', backgroundColor: 'red', color: 'white', borderRadius: '5px', padding: '1px 5px 1px 5px'}}>
                         {unreadNum}
                         </a>
                 )}
