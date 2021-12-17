@@ -608,7 +608,7 @@ h1 #listItem {
     }
     .HeaderBar {
         min-width: 1080px;
-        min-height: 128px;
+        min-height: 126px;
     }
     .forumPage {
         width: 1080px;
@@ -688,8 +688,8 @@ h1 #listItem {
         height: 90px; 
     }
     .responsive_chatImg2 {
-        height: 105px;
-        width: 105px;
+        height: 100px;
+        width: 100px;
     }
     .message_grid {
         grid-template-rows: 3fr 5fr;
