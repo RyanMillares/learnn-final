@@ -175,8 +175,8 @@ export default function Header({currPage}) {
                 </div>
                     <div class="dropdown_menu dropdown_menu--animated dropdown_menu-6">
                         <div class="dropdown_item-1" style={{ paddingTop: '35px' }} id = "fillerItem">&nbsp;</div>
-                        <div class="dropdown_item-2" id="fillerItem">Logged in as <a style = {{fontWeight: 'bold'}}>{user != null ? user.email : "gimme a sec"}</a></div>
-                        <div class="dropdown_item-5" style={{ borderRadius: '0px 0px 10px 10px' }} id="dropItem">
+                        <div class="dropdown_item-2 responsive_text4" id="fillerItem">Logged in as <a style = {{fontWeight: 'bold'}}>{user != null ? user.email : "gimme a sec"}</a></div>
+                        <div class="dropdown_item-5 responsive_text4" style={{ borderRadius: '0px 0px 10px 10px' }} id="dropItem">
                             <button className="text-white-800" onClick={async () => {
                                 let { error } = await supabase.auth.signOut()
                                 if (error) {
