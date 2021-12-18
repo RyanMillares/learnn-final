@@ -595,7 +595,7 @@ h1 #listItem {
     margin-top: 5vh;
     margin-bottom: 5vh;
 }
-@media (max-width: 540px) {
+@media (max-width: 640px) {
     .profilePage {
         justify-content: space-around;
     }

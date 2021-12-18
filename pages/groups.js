@@ -6,9 +6,11 @@ import { Router } from "next/dist/client/router";
 import { useRouter } from "next/dist/client/router";
 import Head from "next/dist/shared/lib/head";
 import GroupPanel from "../components/GroupPanel";
+import { Auth } from "@supabase/ui";
 
 export default function groups () {
-    let user = supabase.auth.user()
+    //let user = supabase.auth.user()
+    const {user} = Auth.useUser() // add this everywhere
     const router = useRouter()
     let [createMode, setMode] = useState(false)
     const [groupName, setName] = useState("")
@@ -17,9 +19,7 @@ export default function groups () {
     const [groupList, setGroups] = useState([])
 
 
-    if(user == null) {
-        user =  supabase.auth.user()
-    }
+    
 
     useEffect(() => {
         if(user != null && !groupsFound) {
