@@ -2,6 +2,8 @@
 
 CPSC 458 Final Project repository
 Link to site: https://learnn-official.netlify.app
+Attached is a PDF with a basic log of feature additions and bugs over the course
+of development.
 
 ## Features
 
