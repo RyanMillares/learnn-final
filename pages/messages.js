@@ -6,6 +6,7 @@ import Head from "next/dist/shared/lib/head";
 import NamePicDel from "../components/NamePicDel";
 import MessageBody from "../components/MessageBody";
 import MessagePreview from "../components/MessagePreview";
+import { Auth } from "@supabase/ui";
 
 function convertedDate(date_string) {
 
@@ -38,7 +39,7 @@ function convertedTime(time_string) {
 }
 
 export default function messages() {
-    let user = supabase.auth.user()
+    const {user} = Auth.useUser()
     const router = useRouter()
 
     const [messages, setMessages] = useState(null)

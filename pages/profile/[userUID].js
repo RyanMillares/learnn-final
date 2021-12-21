@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import Head from "next/dist/shared/lib/head"
 import { useRouter } from "next/dist/client/router"
 import Avatar from "../../components/Avatar"
+import { Auth } from "@supabase/ui"
 import { supabase } from '../../utils/supabaseClient'
 function convertedDate(date_string) {
 
@@ -26,10 +27,8 @@ function convertedTime(time_string) {
 }
 export default function userProfile() {
 
-    let user = supabase.auth.user()
-    if(user == null) {
-        user =  supabase.auth.user()
-    }
+    const {user} = Auth.useUser()
+    
     const router = useRouter()
     const userId = router.query.userUID
     const [userInfo, setInfo] = useState([])

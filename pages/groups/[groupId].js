@@ -6,6 +6,7 @@ import Input from "../../components/Input"
 import Link from "next/link"
 import { useRouter } from "next/dist/client/router"
 import NameAndPic from "../../components/NameAndPic"
+import { Auth } from "@supabase/ui"
 
 import { supabase } from '../../utils/supabaseClient'
 
@@ -29,10 +30,7 @@ export default function groupchat() {
     //const currentName = "rmillares" //this is default, idk how to carry over username yet
 
     const testBool = true
-    let user = supabase.auth.user()
-    if (user == null) {
-        user = supabase.auth.user()
-    }
+    const {user} = Auth.useUser()
     const router = useRouter()
     let groupId = parseInt(router.query.groupId, 10)
 

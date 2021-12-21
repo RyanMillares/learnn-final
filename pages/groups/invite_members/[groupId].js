@@ -7,13 +7,11 @@ import NameAndPic from "../../../components/NameAndPic";
 import NamePicDel from "../../../components/NamePicDel";
 import InvitedMembers from "../../../components/InvitedMembers";
 import Head from "next/dist/shared/lib/head";
+import { Auth } from "@supabase/ui";
 
 export default function InviteMembers() {
     
-    let user = supabase.auth.user()
-    if(user == null) {
-        user =  supabase.auth.user()
-    }
+    const {user} = Auth.useUser()
     const router = useRouter()
     const groupId = parseInt(router.query.groupId, 10)
     const [usersLoaded, setLoaded] = useState(false)

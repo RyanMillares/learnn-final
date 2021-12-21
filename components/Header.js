@@ -7,7 +7,7 @@ import Avatar from './Avatar'
 
 
 export default function Header({currPage}) {
-    const user = supabase.auth.user()
+    const {user} = Auth.useUser()
     const [userInfo, setInfo] = useState(null)
     const [collegeName, setCollege] = useState(null)
     const [unreadNum, setUnread] = useState(null)
