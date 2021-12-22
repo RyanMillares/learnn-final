@@ -42,7 +42,7 @@ export default function Home() {
     <h1 className = "text-center font-bold text-4xl" style = {{alignContent: 'center', alignItems: 'center'}}>
       Welcome to <a style = {{color: 'teal'}}>Learn'N</a>
       <p style = {{fontSize: '20px'}}>This homepage is still in development, go to Groups to create your first group!</p>
-   
+      <p style = {{fontSize: '18px'}}>We recommend signing up with your school email to get the most out of our user search (currently in development)</p>
     </h1>
     
     
