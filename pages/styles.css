@@ -37,7 +37,7 @@ body {
     justify-content: space-between;
     width: 100%;
     max-height: 98px;
-    background-color: #292161;
+    background-color: #201953; /*#292161*/
     /*border-bottom: 2px solid #77FF99; */
     margin-bottom: 5px;
     min-width: 902px;
@@ -47,7 +47,7 @@ body {
 
 }
 nav #left {
-    font-family: NC Burrata,sans-serif;
+    font-family: "Bodoni MT", Didot, "Didot LT STD", "Book Antiqua", Garamond, "Times New Roman", serif;
 
     display: flex;
     column-gap: 20px;
@@ -63,7 +63,7 @@ nav #left {
     background-color: #27611e;
 
     padding-right: 2rem;
-    border: 1px solid #3f8d33;
+    /*border: 1px solid #3f8d33;*/
     border-bottom: none;
     font-size: 20px;
 }
@@ -99,7 +99,7 @@ nav #right {
     z-index: 1;
     overflow: hidden;
     padding: 5px 5px 5px 5px;
-    background-color:#292161;
+    background-color:#201953;
     width: 230px;
 
 }
@@ -469,7 +469,7 @@ h1 #listItem {
     margin-top: 20px;
     min-height: 100%;
     display: grid;
-    grid-template-columns: 1fr 10fr 5fr;
+    grid-template-columns: 1fr 2fr 1fr;
     grid-template-rows: 1fr;
 
 }

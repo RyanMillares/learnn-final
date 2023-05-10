@@ -5,6 +5,8 @@ import { supabase } from "../../../utils/supabaseClient";
 import NamePicAdd from "../../../components/NamePicAdd";
 import NameAndPic from "../../../components/NameAndPic";
 import NamePicDel from "../../../components/NamePicDel";
+import Input from "../../../components/Input";
+
 import InvitedMembers from "../../../components/InvitedMembers";
 import Head from "next/dist/shared/lib/head";
 import { Auth } from "@supabase/ui";
@@ -25,8 +27,11 @@ export default function InviteMembers() {
     const [invMsg, setMsg] = useState("")
     const [confirm, setConfirm] = useState(false)
 
+    const [tags, setTags] = useState([])
+   
+
     useEffect(() => {
-        lmao()
+        console.log("useEffect is ran")
         if(validGroup == 0){
             if(!isNaN(groupId)) {
                 verifyGroup()
@@ -44,7 +49,7 @@ export default function InviteMembers() {
 
         }
         //console.log(typeof groupId)
-        console.log(invites)
+        //console.log(invites)
 
                
     })
@@ -116,6 +121,9 @@ export default function InviteMembers() {
         
         
     }
+    const addTag = () => {
+
+    }
     const updateGroup = async () => {
         let addedInvites = groupInfo.invited_members + (groupInfo.invited_members != null ? " " : "") + (invites.filter(invite1 => !groupInfo.invited_members.includes(invite1))).filter(invite2 => !groupInfo.accepted_members.includes(invite2)).join(" ")
         const { data, error } = await supabase
@@ -171,7 +179,7 @@ export default function InviteMembers() {
             setInvites([...invites, email])
 
         }
-        lmao()
+        //lmao()
     }
     const removeEmail = async (email) => {
         let tempArray = [...invites]
@@ -180,7 +188,7 @@ export default function InviteMembers() {
             tempArray.splice(index, 1)
         }
         setInvites(tempArray)
-        lmao()
+        //lmao()
     }
     
     
@@ -253,8 +261,13 @@ export default function InviteMembers() {
                                                 )
                                             }
                         <h1 className="text-center font-bold text-3xl">Inviting members to {groupInfo.group_name}...</h1>
+                        <Input handleSubmit={addTag} buttonText="Search" />
+
                                             <div className="mainInviteGrid">
-                                               <div></div>
+                                               <div>
+                                                   <p>This is the school search</p>
+                                                   
+                                               </div>
                                                 <div className ="membersInviteBox">
                                                     {
                                                         memberList != null && (
@@ -299,9 +312,6 @@ export default function InviteMembers() {
                        
                         </>
                         
-
-
-
                     )
                    )
                 )
